@@ -1,0 +1,23 @@
+{
+  "name": "Wirkungslog",
+  "short_name": "Wirkungslog",
+  "description": "Wirkverlauf und Verhalten waehrend der Medikamenten-Titration erfassen.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0a0c11",
+  "theme_color": "#0a0c11",
+  "lang": "de",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Wirkt deutlich", "url": "./index.html?log=3" },
+    { "name": "Wirkt",          "url": "./index.html?log=2" },
+    { "name": "Laesst nach",    "url": "./index.html?log=1" },
+    { "name": "Schnell erfassen", "url": "./index.html?quick=1" }
+  ]
+}
