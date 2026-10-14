@@ -33,7 +33,11 @@
   /* Blöcke folgen dem Tageslauf: Vormittag warm, Nachmittag kupfern, Abend kühl */
   --b1:#f2b03d; --b1-bg:rgba(242,176,61,.09); --b1-br:rgba(242,176,61,.28);
   --b2:#e2854e; --b2-bg:rgba(226,133,78,.09); --b2-br:rgba(226,133,78,.28);
-  --b3:#8b93ef; --b3-bg:rgba(139,147,239,.09); --b3-br:rgba(139,147,239,.28);
+  --b3:#ac9cf0; --b3-bg:rgba(172,156,240,.09); --b3-br:rgba(172,156,240,.28);
+  --b4:#a3b3c8; --b4-bg:rgba(163,179,200,.08); --b4-br:rgba(163,179,200,.24);
+  /* Diagrammfarben der Fenster: gleiche Farbfamilien wie die Karten, über Helligkeit getrennt (validiert) */
+  --w1:#bc8800; --w2:#ad4216; --w3:#9580e0;
+  --med:#49b8b8;
   --s-arbeit:#5b9bf5;   --s-arbeit-bg:rgba(91,155,245,.15);
   --s-reise:#a98bf0;    --s-reise-bg:rgba(169,139,240,.15);
   --s-frei:#4cc9a0;     --s-frei-bg:rgba(76,201,160,.15);
@@ -122,6 +126,11 @@ main{max-width:560px;margin:0 auto;padding:calc(env(safe-area-inset-top) + 14px)
 .card[data-b="0"] .cardhead[aria-expanded=true] .chev{color:var(--b1)}
 .card[data-b="1"] .cardhead[aria-expanded=true] .chev{color:var(--b2)}
 .card[data-b="2"] .cardhead[aria-expanded=true] .chev{color:var(--b3)}
+.card[data-b="3"]{border-color:var(--b4-br);background:linear-gradient(180deg,var(--b4-bg) 0,rgba(0,0,0,0) 96px),var(--surface)}
+.card[data-b="3"] .num{background:var(--b4-bg);color:var(--b4)}
+.card[data-b="3"] .cardhead[aria-expanded=true] .chev{color:var(--b4)}
+.wingroup[data-w="2"] .wingroup-head{background:var(--b3-bg)}
+.wingroup[data-w="2"] .wingroup-head .nm{color:var(--b3)}
 .wingroup[data-w="0"] .wingroup-head{background:var(--b1-bg)}
 .wingroup[data-w="0"] .wingroup-head .nm{color:var(--b1)}
 .wingroup[data-w="1"] .wingroup-head{background:var(--b2-bg)}
@@ -249,10 +258,6 @@ input[type=time]{font-variant-numeric:tabular-nums;font-weight:600}
   flex:none;width:auto;min-width:88px;min-height:34px;padding:5px 9px;
   background:var(--surface-2);font-size:15px;font-weight:640;font-variant-numeric:tabular-nums
 }
-.entry-head input.ep{
-  flex:none;width:auto;min-width:74px;max-width:84px;min-height:34px;padding:5px 8px;
-  background:var(--surface-2);font-size:14px;font-variant-numeric:tabular-nums
-}
 .entry-head .del{margin-left:auto;font-size:12.5px;color:var(--text-3)}
 .entry .seg{background:var(--surface-2)}
 .entry .seg button{min-height:34px;font-size:12.5px}
@@ -334,36 +339,17 @@ table.tbl .n{font-size:11.5px;color:var(--text-3);font-weight:400}
 .scroll-y{max-height:340px;overflow-y:auto;-webkit-overflow-scrolling:touch}
 .tl-row{display:flex;align-items:center;gap:8px}
 .tl-day{flex:none;width:44px;font-size:10.5px;color:var(--text-3);font-variant-numeric:tabular-nums;text-align:right}
-.tl-lane{position:relative;flex:1;height:14px;background:var(--inset);border-radius:4px}
-.tl-lane.tall{height:26px;border-radius:7px;margin-top:11px}
-.tl-bar{position:absolute;border-radius:2px}
-.tl-bar.w1{top:2px;height:5px;background:var(--b1)}
-.tl-bar.w2{bottom:2px;height:5px;background:var(--b2)}
-.tl-bar.lat{top:50%;height:2px;margin-top:-1px;background:rgba(255,255,255,.13)}
-.tl-bar.gap{top:50%;height:4px;margin-top:-2px;border-radius:2px;
-  background:repeating-linear-gradient(45deg,rgba(242,96,122,.55) 0 3px,rgba(242,96,122,.15) 3px 6px)}
-.tl-lane.tall .tl-bar.w1{top:4px;height:7px;border-radius:4px}
-.tl-lane.tall .tl-bar.w2{bottom:4px;height:7px;border-radius:4px}
-.tl-lane.tall .tl-bar.lat{height:2px}
-.tl-lane.tall .tl-bar.gap{height:6px;margin-top:-3px}
+.tl-lane{position:relative;flex:1;height:19px;background:var(--inset);border-radius:4px}
+.tl-bar{position:absolute;height:4px;border-radius:2px}
+.tl-bar.w1{top:2px;background:var(--w1)}
+.tl-bar.w2{top:7.5px;background:var(--w2)}
+.tl-bar.w3{bottom:2px;background:var(--w3)}
 .tl-dot{position:absolute;width:6px;height:6px;margin-left:-3px;border-radius:50%;z-index:2;box-shadow:0 0 0 2px var(--surface)}
-.tl-dot.d1{top:1px}
-.tl-dot.d2{bottom:1px}
-.tl-lane.tall .tl-dot.d1{top:2px}
-.tl-lane.tall .tl-dot.d2{bottom:2px}
-.tl-dot.d1{background:var(--b1)}
-.tl-dot.d2{background:var(--b2)}
+.tl-dot.d1{top:1px;background:var(--w1)}
+.tl-dot.d2{top:6.5px;background:var(--w2)}
+.tl-dot.d3{bottom:1px;background:var(--w3)}
 .tl-axis{position:relative;flex:1;height:14px}
 .tl-axis span{position:absolute;font-size:10px;color:var(--text-3);font-variant-numeric:tabular-nums;white-space:nowrap}
-.avgleg{margin-top:13px;display:flex;flex-direction:column;gap:5px}
-.al-row{display:flex;align-items:center;gap:9px;font-size:12.5px}
-.al-sw{flex:none;width:14px;height:8px;border-radius:2px}
-.al-sw.dot{width:8px;height:8px;border-radius:50%;margin:0 3px}
-.al-sw.d1,.al-sw.w1{background:var(--b1)}
-.al-sw.d2,.al-sw.w2{background:var(--b2)}
-.al-sw.gap{background:repeating-linear-gradient(45deg,rgba(242,96,122,.6) 0 3px,rgba(242,96,122,.18) 3px 6px)}
-.al-n{flex:1;color:var(--text-2);text-align:left}
-.al-v{color:var(--text);font-weight:620;font-variant-numeric:tabular-nums;text-align:right}
 .tl-split{display:flex;align-items:center;gap:8px;margin:7px 0 7px 52px}
 .tl-split i{flex:1;height:1px;background:rgba(242,176,61,.35)}
 .tl-split span{
@@ -378,14 +364,18 @@ table.tbl .n{font-size:11.5px;color:var(--text-3);font-weight:400}
 .gb-tr{flex:1;display:flex;flex-direction:column;gap:4px}
 .gb-line{position:relative;display:flex;align-items:center;gap:7px;height:11px}
 .gb-fill{height:11px;border-radius:3px;transition:width .4s var(--ease)}
-.gb-fill.b1{background:var(--b1)}
-.gb-fill.b2{background:var(--b2)}
+.gb-fill.w1{background:var(--w1)}
+.gb-fill.w2{background:var(--w2)}
+.gb-fill.w3{background:var(--w3)}
+.gb-fill.med{background:var(--med)}
 .gb-v{font-size:11.5px;color:var(--text-3);font-variant-numeric:tabular-nums}
 .leg{display:flex;gap:14px;justify-content:center;margin-top:9px;font-size:11.5px;color:var(--text-2)}
 .leg span{display:inline-flex;align-items:center;gap:6px}
 .leg i.sw{width:10px;height:10px;border-radius:3px;display:inline-block}
-.leg i.sw.b1{background:var(--b1)}
-.leg i.sw.b2{background:var(--b2)}
+.leg i.sw.w1{background:var(--w1)}
+.leg i.sw.w2{background:var(--w2)}
+.leg i.sw.w3{background:var(--w3)}
+.leg i.sw.med{background:var(--med)}
 .leg i.sw.off{background:var(--text-3)}
 .gb-fill.off{background:var(--text-3)}
 .leg i.sw.warn{background:var(--warn)}
@@ -409,10 +399,11 @@ table.tbl .n{font-size:11.5px;color:var(--text-3);font-weight:400}
 .report .kv{display:grid;grid-template-columns:auto 1fr;gap:2px 14px;font-size:12.5px}
 .report .kv dt{font-weight:600}
 .report .kv dd{margin:0}
-.report .rtl-lane{position:relative;height:11px;background:#eee;border-radius:3px}
-.report .rtl-bar{position:absolute;top:1px;bottom:1px;border-radius:2px}
-.report .rtl-bar.w1{background:#8a6a1f}
-.report .rtl-bar.w2{background:#a1552a}
+.report .rtl-lane{position:relative;height:13px;background:#eee;border-radius:3px}
+.report .rtl-bar{position:absolute;height:3px;border-radius:2px}
+.report .rtl-bar.w1{top:1px;background:#8a6a1f}
+.report .rtl-bar.w2{top:5px;background:#a1552a}
+.report .rtl-bar.w3{top:9px;background:#6b55b8}
 .report .rtl-row{display:flex;align-items:center;gap:7px;margin-bottom:2px}
 .report .rtl-day{flex:none;width:46px;font-size:10px;text-align:right;color:#444}
 .report .rtl-lane-wrap{flex:1}
@@ -430,6 +421,51 @@ table.tbl .n{font-size:11.5px;color:var(--text-3);font-weight:400}
   .report h3{page-break-after:avoid}
   .report table{page-break-inside:auto}
 }
+/* Jetzt-Knopf im Wirkfenster */
+.wnow{
+  margin-top:8px;width:100%;min-height:34px;border-radius:9px;
+  background:var(--accent-soft);border:1px solid rgba(242,176,61,.32);
+  color:var(--accent-2);font-size:13.5px;font-weight:640
+}
+/* Ereignis-Knöpfe in der Schnellerfassung */
+.evrow{display:flex;gap:8px}
+.evbtn{
+  flex:1;min-height:60px;border-radius:var(--radius-s);
+  background:var(--accent-soft);border:1px solid rgba(242,176,61,.38);color:var(--accent-2);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px
+}
+.evbtn .ev-n{font-size:14.5px;font-weight:660}
+.evbtn .ev-t{font-size:12px;color:var(--text-2);font-variant-numeric:tabular-nums}
+.evbtn.set{background:var(--inset);border-color:var(--hairline);color:var(--text-2)}
+.evbtn[disabled]{opacity:.45;cursor:default}
+.evbtn.set[disabled]{opacity:1}
+/* Wirkprofil */
+.prof-wrap{position:relative;margin-top:10px}
+svg.prof{display:block;width:100%;height:auto;overflow:visible;touch-action:pan-y}
+svg.prof .pg{stroke:var(--hairline);stroke-width:1}
+svg.prof .plab{fill:var(--text-3);font-size:10px;font-variant-numeric:tabular-nums}
+svg.prof .pl{fill:none;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+svg.prof .pcross{stroke:var(--text-2);stroke-width:1}
+.prof-tip{
+  position:absolute;top:-6px;transform:translate(-50%,-100%);pointer-events:none;
+  background:rgba(30,35,46,.95);border:1px solid rgba(255,255,255,.12);border-radius:10px;
+  padding:7px 10px;font-size:12px;color:var(--text);white-space:nowrap;
+  opacity:0;transition:opacity .15s;z-index:3
+}
+.prof-tip.on{opacity:1}
+.prof-tip .tt{color:var(--text-2);margin-bottom:3px}
+.prof-tip .r{display:flex;align-items:center;gap:7px;font-variant-numeric:tabular-nums}
+.prof-tip .r b{margin-left:auto;padding-left:10px;font-weight:640}
+.prof-tip i{width:8px;height:8px;border-radius:50%;flex:none}
+.tview{display:block;margin:10px auto 0;font-size:12.5px;color:var(--accent-2);padding:6px 10px}
+/* Automatische Kopien */
+.snaps{display:flex;flex-direction:column;gap:7px;margin-top:11px}
+.snaprow{display:flex;align-items:center;gap:8px;background:var(--inset);border:1px solid var(--hairline);border-radius:var(--radius-s);padding:8px 10px}
+.sn-l{flex:1;display:flex;flex-direction:column;text-align:left;min-width:0}
+.sn-n{font-size:14px;font-weight:600}
+.sn-d{font-size:12px;color:var(--text-3);font-variant-numeric:tabular-nums}
+.sn-b{flex:none;min-height:34px;padding:0 12px;border-radius:9px;background:var(--surface-2);color:var(--accent-2);font-size:13px;font-weight:600}
+.sn-b.armed{background:var(--warn-soft);color:var(--warn)}
 .hidden{display:none !important}
 
 /* schwebende Leiste: Pille plus abgesetzter Kreis */
@@ -484,7 +520,7 @@ nav.tabs svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1
 .sheet{
   position:fixed;left:12px;right:12px;margin:0 auto;max-width:552px;
   bottom:calc(86px + env(safe-area-inset-bottom));z-index:61;
-  display:flex;flex-direction:column;max-height:calc(100dvh - 104px);
+  display:flex;flex-direction:column;height:min(620px, calc(100dvh - 104px));
   background:rgba(21,25,34,.94);
   -webkit-backdrop-filter:saturate(190%) blur(30px);backdrop-filter:saturate(190%) blur(30px);
   border:1px solid rgba(255,255,255,.13);
@@ -501,7 +537,7 @@ nav.tabs svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1
   padding:4px 14px 12px;width:100%;max-width:560px;margin:0 auto;flex:1;min-height:0
 }
 .sheet-body .grow-field{flex:1;min-height:0;display:flex;flex-direction:column}
-.sheet-body textarea.fill{flex:1;min-height:72px;height:100%;resize:none}
+.sheet-body textarea.fill{flex:1;min-height:92px;height:100%;resize:none}
 .sheet-foot{padding:0 14px 14px;width:100%;max-width:560px;margin:0 auto}
 .primary{
   min-height:50px;width:100%;border-radius:var(--radius-s);background:var(--accent);color:#231803;
@@ -543,10 +579,18 @@ nav.tabs svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1
 "use strict";
 
 /* ===================== Konstanten ===================== */
-const SCHEMA = 1;
-const HOURS = 6;                 // Stundenzeilen je Einnahme
+const SCHEMA = 2;                // 2: drei Einnahmen, kein Puls
+const N_DOSES = 3;
+const OPTIONAL_FROM = 2;         // ab Einnahme 3 bedeutet "leer" nicht geplant statt vergessen
+const IDX = Array.from({ length:N_DOSES }, (_,i) => i);
+const winKey = i => "f" + (i+1);
+const KEYS = IDX.map(winKey);
+const REVIEW = N_DOSES;          // Index des Tagesabschlusses im Akkordeon
+const HOURS = 6;                 // Wirkverlauf-Streifen je Einnahme
 const DAY_START_HOUR = 4;        // Tagesgrenze 04:00
-const LATE_MIN = 90;             // ab hier gilt eine Stundenzeile als nachgetragen
+const LATE_MIN = 90;             // ab hier gilt ein Eintrag als nachgetragen
+const SNAP_KEEP = 7;             // tägliche automatische Kopien
+const PRE_KEEP_DAYS = 30;        // Kopie des Stands vor dem Update
 
 const R_LABELS = ["keine","lässt nach","wirkt","deutlich"];
 const INIT_MEAN = ["gar nicht angefangen","erst nach langem Wegdrücken","angefangen, mit Reibung","ohne nennenswerte Reibung"];
@@ -564,7 +608,7 @@ const statusLabel = v => (STATUS.find(x => x.v === v) || {}).t || "Ohne Status";
 function recentSideEffects(){
   const seen = [];
   Object.values(state.days).sort((a,b) => a.date < b.date ? 1 : -1).forEach(d => {
-    ["f1","f2"].forEach(k => (d.review[k].se || []).forEach(x => {
+    KEYS.forEach(k => (((d.review || {})[k] || {}).se || []).forEach(x => {
       if (!seen.some(y => y.toLowerCase() === x.toLowerCase())) seen.push(x);
     }));
   });
@@ -591,75 +635,152 @@ const IDB = (() => {
     });
     return dbp;
   }
+  // Ergebnis erst nach abgeschlossener Transaktion liefern: dann ist der Schreibvorgang festgeschrieben
+  function run(mode, fn){
+    return open().then(db => new Promise((res, rej) => {
+      const tx = db.transaction("kv", mode);
+      const req = fn(tx.objectStore("kv"));
+      tx.oncomplete = () => res(req ? req.result : undefined);
+      tx.onerror = () => rej(tx.error);
+      tx.onabort = () => rej(tx.error);
+    }));
+  }
   return {
-    async get(){
-      const db = await open();
-      return new Promise((res, rej) => {
-        const t = db.transaction("kv","readonly").objectStore("kv").get("state");
-        t.onsuccess = () => res(t.result || null); t.onerror = () => rej(t.error);
-      });
-    },
-    async set(_k, v){
-      const db = await open();
-      return new Promise((res, rej) => {
-        const t = db.transaction("kv","readwrite").objectStore("kv").put(v, "state");
-        t.onsuccess = () => res(); t.onerror = () => rej(t.error);
-      });
-    }
+    get:  (k = "state") => run("readonly",  st => st.get(k)).then(v => v == null ? null : v),
+    set:  (k, v)        => run("readwrite", st => st.put(v, k)).then(() => {}),
+    del:  k             => run("readwrite", st => st.delete(k)).then(() => {}),
+    keys: ()            => run("readonly",  st => st.getAllKeys())
   };
 })();
+const clone = o => (typeof structuredClone === "function") ? structuredClone(o) : JSON.parse(JSON.stringify(o));
 
 let state = null;
 let currentDate = null;
 let currentTab = "tracking";
 let saveTimer = null;
+let readOnly = false;            // Speicher nicht lesbar: nie überschreiben
 
 function blankDose(){
-  return { taken:null, time:null, mg:null, plan:"", pulse:null,
-           checks:[],                       // { t:"HH:MM", r:0..3, note, at }
+  return { taken:null, time:null, mg:null, plan:"",
+           checks:[],                       // { id, t:"HH:MM", r:0..3|null, note, at }
            onset:null, offset:null, confirmed:false };
-}
-// Altbestand aus dem festen 6-Stunden-Raster in freie Einträge überführen
-function migrate(st){
-  Object.values(st.days || {}).forEach(d => (d.doses || []).forEach(dz => {
-    if (dz.pulse === undefined) dz.pulse = null;
-    if (Array.isArray(dz.checks)){ dz.checks.forEach(c => { if (!c.id) c.id = newId(); if (c.pulse === undefined) c.pulse = null; }); return; }
-    dz.checks = [];
-    if (Array.isArray(dz.hours) && dz.time){
-      dz.hours.forEach((hr,i) => {
-        if (hr && hr.r != null)
-          dz.checks.push({ id: newId(), t: toHM(toMin(dz.time) + (i+1)*60), r: hr.r, note: hr.note || "", pulse: null, at: hr.at || null });
-      });
-    }
-    delete dz.hours;
-  }));
 }
 function blankRating(){
   return { init:null, endur:null, avoid:null, avoidWhy:"", impulses:null, se:[], note:"" };
 }
 function blankDay(date){
+  const review = {};
+  KEYS.forEach(k => { review[k] = blankRating(); });
   return { date, updatedAt:new Date().toISOString(), status:null,
-           doses:[blankDose(),blankDose()],
-           review:{ f1:blankRating(), f2:blankRating() } };
+           doses:IDX.map(() => blankDose()), review };
+}
+// Hebt jeden älteren Stand verlustfrei auf das aktuelle Schema. Mehrfach ausführbar.
+// Verändert keine Zeitstempel, damit der Import danach weiter richtig zusammenführt.
+function migrate(st){
+  if (!st || typeof st !== "object") return st;
+  if (!st.days || typeof st.days !== "object") st.days = {};
+  Object.values(st.days).forEach(d => {
+    if (!d || typeof d !== "object") return;
+    if (d.status === undefined) d.status = null;
+    if (!Array.isArray(d.doses)) d.doses = [];
+    d.doses.forEach(dz => {
+      if (!dz || typeof dz !== "object") return;
+      // Version 0: festes Stundenraster in freie Einträge überführen
+      if (!Array.isArray(dz.checks)){
+        dz.checks = [];
+        if (Array.isArray(dz.hours) && dz.time){
+          dz.hours.forEach((hr,i) => {
+            if (hr && hr.r != null)
+              dz.checks.push({ id:newId(), t:toHM(toMin(dz.time) + (i+1)*60), r:hr.r, note:hr.note || "", at:hr.at || null });
+          });
+        }
+      }
+      delete dz.hours;
+      // Version 2: Puls entfällt. Einträge, die nur aus einem Pulswert bestanden, entfallen mit.
+      dz.checks = dz.checks.filter(c => c && typeof c === "object"
+        && !(c.pulse != null && c.r == null && !(c.note || "").trim()));
+      dz.checks.forEach(c => {
+        delete c.pulse;
+        if (!c.id) c.id = newId();
+        if (c.r === undefined) c.r = null;
+        if (c.note == null) c.note = "";
+      });
+      delete dz.pulse;
+      if (dz.taken === undefined) dz.taken = null;
+      if (dz.plan == null) dz.plan = "";
+      if (dz.onset === undefined) dz.onset = null;
+      if (dz.offset === undefined) dz.offset = null;
+      if (dz.confirmed === undefined) dz.confirmed = false;
+    });
+    while (d.doses.length < N_DOSES) d.doses.push(blankDose());
+    if (!d.review || typeof d.review !== "object") d.review = {};
+    KEYS.forEach(k => {
+      const r = d.review[k];
+      if (!r || typeof r !== "object"){ d.review[k] = blankRating(); return; }
+      if (!Array.isArray(r.se)) r.se = [];
+      if (r.note == null) r.note = "";
+      if (r.avoidWhy == null) r.avoidWhy = "";
+    });
+  });
+  if (!st.meta || typeof st.meta !== "object") st.meta = { created:new Date().toISOString(), lastExport:null };
+  st.schema = SCHEMA;
+  return st;
 }
 function blankState(){
   return { schema:SCHEMA, days:{}, meta:{ created:new Date().toISOString(), lastExport:null } };
 }
 
 async function load(){
-  const raw = await IDB.get();
+  let raw;
+  try { raw = await IDB.get("state"); }
+  catch(e){ readOnly = true; state = blankState(); return "unreadable"; }
+  if (raw && raw.schema > SCHEMA){ readOnly = true; state = raw; return "newer"; }
+  if (raw && raw.schema && raw.schema < SCHEMA){
+    // Unveränderte Kopie, bevor das Update irgendetwas umbaut
+    try { if (!(await IDB.get("pre-v2"))) await IDB.set("pre-v2", { at:new Date().toISOString(), from:raw.schema, state:raw }); }
+    catch(e){}
+  }
   state = raw && raw.schema ? raw : blankState();
   migrate(state);
-  if (!state.meta) state.meta = { created:new Date().toISOString(), lastExport:null };
+  return "ok";
 }
 function touchDay(d){ if (state.days[d]) state.days[d].updatedAt = new Date().toISOString(); }
+function writeState(){
+  if (readOnly) return Promise.resolve();
+  return IDB.set("state", state);
+}
 function save(dateTouched){
+  if (readOnly){ flashSaved("Nicht gespeichert: Speicher nicht lesbar"); return; }
   if (dateTouched) touchDay(dateTouched);
   clearTimeout(saveTimer);
   saveTimer = setTimeout(async () => {
-    try { await IDB.set("state", state); flashSaved("Gespeichert"); }
+    saveTimer = null;
+    try { await writeState(); flashSaved("Gespeichert"); }
     catch(e){ flashSaved("Nicht gespeichert. Speicher blockiert."); }
   }, 260);
+}
+// Beim Verlassen der App sofort schreiben, sonst geht die letzte Eingabe verloren
+function flushSave(){
+  if (!saveTimer) return;
+  clearTimeout(saveTimer); saveTimer = null;
+  writeState().catch(() => {});
+}
+document.addEventListener("visibilitychange", () => { if (document.visibilityState === "hidden") flushSave(); });
+window.addEventListener("pagehide", flushSave);
+
+// Eine Kopie pro Tag, die letzten SNAP_KEEP bleiben. Die Kopie vor dem Update läuft nach PRE_KEEP_DAYS ab.
+async function snapshotDaily(){
+  if (readOnly) return;
+  try {
+    const key = "snap:" + logicalToday();
+    const keys = await IDB.keys();
+    if (!keys.includes(key) && Object.values(state.days).some(dayHasData))
+      await IDB.set(key, { at:new Date().toISOString(), state:clone(state) });
+    const snaps = (await IDB.keys()).filter(k => typeof k === "string" && k.startsWith("snap:")).sort();
+    for (const k of snaps.slice(0, Math.max(0, snaps.length - SNAP_KEEP))) await IDB.del(k);
+    const pre = await IDB.get("pre-v2");
+    if (pre && pre.at && Date.now() - new Date(pre.at).getTime() > PRE_KEEP_DAYS * 86400000) await IDB.del("pre-v2");
+  } catch(e){}
 }
 let savedTimer = null;
 function flashSaved(msg){
@@ -683,6 +804,9 @@ function fromIso(s){ const [y,m,d] = s.split("-").map(Number); return new Date(y
 function shiftDate(s, n){ const d = fromIso(s); d.setDate(d.getDate()+n); return iso(d); }
 function nowHM(){ const d = new Date(); return String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0"); }
 function toMin(hm){ if(!hm) return null; const [h,m] = hm.split(":").map(Number); return h*60+m; }
+// Minuten ab 00:00 des logischen Tages. Uhrzeiten vor 04:00 gehören zur Nacht danach.
+function dm(hm){ const m = toMin(hm); return m == null ? null : (m < DAY_START_HOUR*60 ? m + 1440 : m); }
+function nowDm(){ const d = new Date(), m = d.getHours()*60 + d.getMinutes(); return m < DAY_START_HOUR*60 ? m + 1440 : m; }
 function toHM(min){
   if (min == null) return null;
   const m = ((min % 1440) + 1440) % 1440;
@@ -706,28 +830,35 @@ function dateLabel(s){
 let idSeq = 0;
 const newId = () => Date.now().toString(36) + (idSeq++).toString(36);
 function sortedChecks(dose){
-  return (dose.checks || []).slice().sort((a,b) => toMin(a.t) - toMin(b.t));
+  return (dose.checks || []).slice().sort((a,b) => dm(a.t) - dm(b.t));
 }
 const doseActive = d => d.taken !== false;
+// Vorschlag aus dem Wirkverlauf. Beginn: erster Eintrag mit "wirkt" oder "deutlich".
+// Ende: erster Eintrag mit "lässt nach" oder "keine" nach dem letzten wirksamen Eintrag.
+// Fehlt ein solcher Eintrag, bleibt das Ende offen statt auf den letzten Eintrag zu fallen.
 function suggestion(dose){
   if (!doseActive(dose)) return { onset:null, offset:null };
-  const on = sortedChecks(dose).filter(c => c.r != null && c.r >= 2);
-  if (!on.length) return { onset:null, offset:null };
-  return { onset:on[0].t, offset:on[on.length-1].t };
+  const t0 = dose.time ? dm(dose.time) : null;
+  const list = sortedChecks(dose).filter(c => c.r != null && (t0 == null || dm(c.t) >= t0));
+  let first = -1, last = -1;
+  list.forEach((c,i) => { if (c.r >= 2){ if (first < 0) first = i; last = i; } });
+  if (first < 0) return { onset:null, offset:null };
+  const after = list.slice(last + 1).find(c => c.r <= 1);
+  return { onset:list[first].t, offset:after ? after.t : null };
 }
 // Welcher Streifenabschnitt gehört zu diesem Eintrag? Abschnitt i endet bei Einnahme + (i+1) h.
 function bucketOf(dose, c){
   if (!dose.time) return null;
-  const d = toMin(c.t) - toMin(dose.time);
+  const d = dm(c.t) - dm(dose.time);
   if (d < 0) return null;
   return Math.min(HOURS - 1, Math.max(0, Math.ceil(d / 60) - 1));
 }
-function bucketRatings(dose){
+function bucketRatings(dose, date){
   const out = Array(HOURS).fill(null), late = Array(HOURS).fill(false);
   sortedChecks(dose).forEach(c => {
     const b = bucketOf(dose, c);
     if (b == null || c.r == null) return;
-    out[b] = c.r; late[b] = checkLate(c);
+    out[b] = c.r; late[b] = checkLate(c, date);
   });
   return { out, late };
 }
@@ -736,16 +867,16 @@ function bucketRatings(dose){
 function setWindowTime(dose, key, hm){
   if (!hm) return false;
   const sug = suggestion(dose);
-  const t0 = dose.time ? toMin(dose.time) : null;
-  let v = toMin(hm), clamped = false;
+  const t0 = dose.time ? dm(dose.time) : null;
+  let v = dm(hm), clamped = false;
   if (key === "onset"){
     if (t0 != null && v < t0){ v = t0; clamped = true; }
     const off = dose.offset || sug.offset;
-    if (off && v > toMin(off)){ v = toMin(off); clamped = true; }
+    if (off && v > dm(off)){ v = dm(off); clamped = true; }
     dose.onset = toHM(v);
   } else {
     const on = dose.onset || sug.onset;
-    const floor = on != null ? toMin(on) : t0;
+    const floor = on != null ? dm(on) : t0;
     if (floor != null && v < floor){ v = floor; clamped = true; }
     dose.offset = toHM(v);
   }
@@ -754,10 +885,17 @@ function setWindowTime(dose, key, hm){
 }
 function resetWindow(dose){ dose.onset = null; dose.offset = null; dose.confirmed = false; }
 
-function checkLate(c){
+// Nachgetragen: mehr als LATE_MIN Minuten nach der eingetragenen Uhrzeit erfasst.
+// Mit Datum exakt über Tagesgrenzen hinweg, ohne Datum näherungsweise.
+function checkLate(c, date){
   if (!c.at || !c.t) return false;
   const at = new Date(c.at);
-  return (at.getHours()*60 + at.getMinutes()) - toMin(c.t) > LATE_MIN;
+  if (date){
+    const start = fromIso(date);
+    return (at - start) / 60000 - dm(c.t) > LATE_MIN;
+  }
+  const m = at.getHours()*60 + at.getMinutes();
+  return (m < DAY_START_HOUR*60 ? m + 1440 : m) - dm(c.t) > LATE_MIN;
 }
 function effWindow(dose){
   const s = suggestion(dose);
@@ -765,24 +903,38 @@ function effWindow(dose){
   return { onset: dose.onset || s.onset, offset: dose.offset || s.offset,
            isSuggested: !dose.confirmed, suggestion:s };
 }
+// Kennzahlen je Fenster: Latenz, Wirkdauer, und das Loch bis zum nächsten Fenster
 function metrics(day){
-  const [d1,d2] = day.doses;
-  const w1 = effWindow(d1), w2 = effWindow(d2);
-  const lat = (d,w) => (d.time && w.onset) ? toMin(w.onset)-toMin(d.time) : null;
-  const len = w => (w.onset && w.offset) ? toMin(w.offset)-toMin(w.onset) : null;
-  const gap = (w1.offset && w2.onset) ? toMin(w2.onset)-toMin(w1.offset) : null;
-  return { lat1:lat(d1,w1), lat2:lat(d2,w2), len1:len(w1), len2:len(w2), gap,
-           cover:(w1.onset && w2.offset) ? toMin(w2.offset)-toMin(w1.onset) : null };
+  const lat = [], len = [], gaps = [];
+  day.doses.forEach((d,i) => {
+    const w = effWindow(d);
+    lat[i] = (doseActive(d) && d.time && w.onset) ? dm(w.onset) - dm(d.time) : null;
+    len[i] = (w.onset && w.offset) ? dm(w.offset) - dm(w.onset) : null;
+  });
+  for (let i = 0; i < day.doses.length - 1; i++){
+    const a = effWindow(day.doses[i]), b = effWindow(day.doses[i+1]);
+    gaps[i] = (a.offset && b.onset) ? dm(b.onset) - dm(a.offset) : null;
+  }
+  return { lat, len, gaps };
 }
 function hourClock(dose, i){ return dose.time ? toHM(toMin(dose.time) + (i+1)*60) : null; }
-let hoursOpen = [false, false];   // Stundenraster startet immer zugeklappt
-let openBlock = null;             // 0, 1 oder 2 (Tagesabschluss). null = automatisch
-let openWin = null;               // 0 oder 1 im Tagesabschluss, -1 = beide zu
+let hoursOpen = IDX.map(() => false);   // Wirkverlauf-Einträge starten zugeklappt
+let openBlock = null;             // 0..N_DOSES-1 Einnahmen, REVIEW = Tagesabschluss. null = automatisch
+let openWin = null;               // Fenster im Tagesabschluss, -1 = alle zu
+function reviewHas(r){
+  return !!r && (r.init != null || r.endur != null || r.avoid != null || r.impulses != null
+    || (r.se || []).length > 0 || !!(r.note || "").trim() || !!(r.avoidWhy || "").trim());
+}
+// Wird dieses Fenster an diesem Tag benutzt? Einnahme 3 nur, wenn etwas erfasst ist.
+function winUsed(day, i){
+  const d = day.doses[i];
+  if (!d) return false;
+  return i < OPTIONAL_FROM || d.taken !== null || reviewHas(day.review[winKey(i)]);
+}
 function autoWin(day){
-  const done = k => day.review[k].init != null && day.review[k].endur != null;
-  if (!done("f1")) return 0;
-  if (!done("f2")) return 1;
-  return 0;
+  const shown = IDX.filter(i => winUsed(day, i));
+  const open = shown.find(i => { const r = day.review[winKey(i)]; return r.init == null || r.endur == null; });
+  return open != null ? open : shown[0];
 }
 function setOpenWin(n){
   openWin = (openWin === n) ? -1 : n;
@@ -794,15 +946,15 @@ function setOpenWin(n){
   });
 }
 function autoBlock(day){
-  for (let i = 0; i < 2; i++){
-    const d = day.doses[i];
-    if (d.taken === null) return i;
-    if (d.taken === true && isWindowLive(d)) return i;
-  }
+  // laufendes Fenster zuerst, das jüngste gewinnt
+  for (let i = N_DOSES - 1; i >= 0; i--) if (day.doses[i].taken === true && isWindowLive(day.doses[i])) return i;
+  for (let i = 0; i < OPTIONAL_FROM; i++) if (day.doses[i].taken === null) return i;
   const done = d => d.taken === false || (d.time && d.mg != null && effWindow(d).onset && effWindow(d).offset);
-  if (!done(day.doses[0])) return 0;
-  if (!done(day.doses[1])) return 1;
-  return 2;
+  for (let i = 0; i < N_DOSES; i++){
+    if (i >= OPTIONAL_FROM && day.doses[i].taken === null) continue;
+    if (!done(day.doses[i])) return i;
+  }
+  return REVIEW;
 }
 // Akkordeon ohne Neuaufbau umschalten, sonst laeuft die Animation nicht
 function setOpenBlock(n){
@@ -814,39 +966,31 @@ function setOpenBlock(n){
     if (head) head.setAttribute("aria-expanded", String(on));
   });
 }   // null = automatisch, true/false = vom Nutzer umgeschaltet
-function isWindowLive(dose){
-  if (!dose.time || currentDate !== logicalToday()) return false;
-  const now = new Date().getHours()*60 + new Date().getMinutes();
-  const t0 = toMin(dose.time);
-  return now >= t0 && now <= t0 + HOURS*60;
+function windowLiveNow(dose){
+  if (!dose || dose.taken !== true || !dose.time) return false;
+  const n = nowDm(), t0 = dm(dose.time);
+  return n >= t0 && n <= t0 + HOURS*60;
 }
+function isWindowLive(dose){ return currentDate === logicalToday() && windowLiveNow(dose); }
 
-// Puls: Ausgangswert vor der Einnahme, Mittel der Werte im Fenster, Differenz
-const PULSE_FROM = 60, PULSE_TO = 180;     // Messfenster in Minuten nach der Einnahme
-function pulseOf(dose){
-  const empty = { pre:null, win:null, delta:null, n:0 };
-  if (!doseActive(dose)) return empty;
-  const pre = dose.pulse != null ? dose.pulse : null;
-  if (!dose.time) return { pre, win:null, delta:null, n:0 };
-  const t0 = toMin(dose.time);
-  const vals = (dose.checks || []).filter(c => {
-    if (c.pulse == null || Number.isNaN(c.pulse)) return false;
-    const d = toMin(c.t) - t0;
-    return d >= PULSE_FROM && d <= PULSE_TO;
-  }).map(c => c.pulse);
-  const win = vals.length ? vals.reduce((a,b)=>a+b,0) / vals.length : null;
-  return { pre, win, delta: (pre != null && win != null) ? win - pre : null, n: vals.length };
-}
 function dayHasData(day){
-  return day.doses.some(d => d.taken !== null || d.time || d.mg || d.pulse != null || d.plan || (d.checks || []).length)
-      || ["f1","f2"].some(k => { const r = day.review[k];
-           return r.init != null || r.endur != null || r.avoid != null || r.impulses != null || r.se.length || r.note; });
+  if (!day || !Array.isArray(day.doses)) return false;
+  return day.doses.some(d => d && (d.taken != null || d.time || d.mg != null || (d.plan || "").trim()
+           || d.onset || d.offset || (d.checks || []).length))
+      || KEYS.some(k => reviewHas((day.review || {})[k]))
+      || !!day.status;
 }
+// Höchste Einzeldosis des Tages, für Dosiswechsel in Zeitleiste und Bericht
+function doseLevel(day){
+  const mg = day.doses.filter(d => d.taken === true && d.mg != null).map(d => d.mg);
+  return mg.length ? Math.max(...mg) : null;
+}
+// "20 + 20 mg", mit dritter Einnahme "20 + 20 + 10 mg". Ausgelassene Einnahme zählt als 0.
 function doseLabel(day){
-  const [a,b] = day.doses;
   const f = d => d.taken === false ? "0" : (d.mg != null ? String(d.mg) : "?");
-  if (a.taken === null && b.taken === null && a.mg == null && b.mg == null) return null;
-  return f(a)+" + "+f(b)+" mg";
+  const used = day.doses.filter((d,i) => i < OPTIONAL_FROM || d.taken !== null || d.mg != null);
+  if (used.every(d => d.taken === null && d.mg == null)) return null;
+  return used.map(f).join(" + ") + " mg";
 }
 
 /* ===================== Bausteine ===================== */
@@ -925,7 +1069,7 @@ function stepperField(label, value, onSet){
 /* ===================== Tracking ===================== */
 const REDUCED = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-function resetDayState(){ hoursOpen = [false,false]; openBlock = null; openWin = null; }
+function resetDayState(){ hoursOpen = IDX.map(() => false); openBlock = null; openWin = null; }
 
 // Tageswechsel: alter Inhalt gleitet raus, neuer von der Gegenseite herein
 function goToDate(next, dir){
@@ -1000,7 +1144,7 @@ function renderTracking(){
     return btn;
   }));
 
-  pane.append(statusRow, doseCard(day, 0), doseCard(day, 1), reviewCard(day));
+  pane.append(statusRow, ...IDX.map(i => doseCard(day, i)), reviewCard(day));
   attachSwipe(pane);
   root.append(pane);
 }
@@ -1063,7 +1207,7 @@ function doseCard(day, idx){
   const w = effWindow(dose);
   const summary = dose.taken === false
       ? ["Ohne Medikament", dose.checks.length ? dose.checks.length + " Einträge" : null].filter(Boolean).join(" · ")
-    : dose.taken === null ? "Noch nichts erfasst"
+    : dose.taken === null ? (idx >= OPTIONAL_FROM ? "Optional" : "Noch nichts erfasst")
     : [dose.time || "Zeit offen", dose.mg != null ? dose.mg + " mg" : null,
        (w.onset && w.offset) ? w.onset + "–" + w.offset : null].filter(Boolean).join(" · ");
 
@@ -1112,12 +1256,6 @@ function doseCard(day, idx){
           h("span", { class:"lbl" }, "Dosis"), doseGrid))));
 
       body.append(h("div", { class:"field" },
-        h("span", { class:"lbl" }, "Puls vor der Einnahme"),
-        h("input", { type:"number", inputmode:"numeric", min:"30", max:"220", placeholder:"–",
-          value: dose.pulse ?? "", oninput:e => {
-            dose.pulse = e.target.value === "" ? null : Number(e.target.value); save(currentDate); }})));
-
-      body.append(h("div", { class:"field" },
         h("label", { for:"plan"+idx }, "Plan für dieses Fenster"),
         h("textarea", { id:"plan"+idx, rows:"3", placeholder:"Was steht in den nächsten Stunden an?",
           oninput:e => { dose.plan = e.target.value; save(currentDate); } }, dose.plan)));
@@ -1143,6 +1281,7 @@ function verlaufBlock(dose, idx){
   if (ref) return refBlock(dose, idx, box);
 
   const w = effWindow(dose);
+  const today = currentDate === logicalToday();
   const mk = (key, label) => {
     const val = dose[key] || w.suggestion[key];
     const isSug = !dose[key] && !!val;
@@ -1153,35 +1292,44 @@ function verlaufBlock(dose, idx){
         ? "Wirkbeginn kann nicht vor der Einnahme liegen"
         : "Wirkende kann nicht vor dem Wirkbeginn liegen");
     };
-    const bump = n => set(toHM(toMin(dose[key] || w.suggestion[key] || dose.time) + n));
+    const bump = n => set(toHM(dm(dose[key] || w.suggestion[key] || dose.time) + n));
     const inp = h("input", { type:"time", class:"v" + (isSug ? " suggested" : ""), value: val || "",
       "aria-label":label, onchange:e => { if (e.target.value) set(e.target.value); }});
+    // Ein Tipp hält den Moment fest, in dem du es bemerkst
+    const now = (today && !dose[key]) ? h("button", { class:"wnow", type:"button",
+      onclick:() => {
+        const clamped = setWindowTime(dose, key, nowHM());
+        save(currentDate); renderTracking();
+        flashSaved(clamped ? (key === "onset" ? "Wirkbeginn auf Einnahmezeit gesetzt" : "Wirkende auf Wirkbeginn gesetzt")
+                           : label + " · " + dose[key]);
+      }}, "Jetzt") : null;
     return h("div", { class:"wbox" },
       h("span", { class:"lbl" }, label, isSug ? h("span", { class:"badge dashed" }, "Vorschlag") : null),
       h("div", { class:"wval" },
         h("button", { class:"stp", type:"button", "aria-label":label+" früher", onclick:() => bump(-15) }, "−"),
         inp,
-        h("button", { class:"stp", type:"button", "aria-label":label+" später", onclick:() => bump(15) }, "+")));
+        h("button", { class:"stp", type:"button", "aria-label":label+" später", onclick:() => bump(15) }, "+")),
+      now);
   };
   box.append(h("div", { class:"window" }, mk("onset","Wirkbeginn"), mk("offset","Wirkende")));
   if (dose.confirmed) box.append(h("button", { class:"wreset", type:"button", onclick:() => {
     resetWindow(dose); save(currentDate); renderTracking(); flashSaved("Zurückgesetzt");
   }}, w.suggestion.onset || w.suggestion.offset ? "Auf Vorschlag zurücksetzen" : "Zeiten entfernen"));
 
-  const lat = (dose.time && w.onset) ? toMin(w.onset)-toMin(dose.time) : null;
-  const len = (w.onset && w.offset) ? toMin(w.offset)-toMin(w.onset) : null;
+  const lat = (dose.time && w.onset) ? dm(w.onset)-dm(dose.time) : null;
+  const len = (w.onset && w.offset) ? dm(w.offset)-dm(w.onset) : null;
   box.append(h("div", { class:"derived" },
     h("span", {}, "Latenz ", h("b", {}, dur(lat))),
-    h("span", {}, "Wirkdauer ", h("b", {}, dur(len)))));
+    h("span", {}, "Wirkdauer ", h("b", {}, w.onset && !w.offset ? "offen" : dur(len)))));
   if (dose.confirmed && (w.suggestion.onset || w.suggestion.offset)){
-    const dOn = (dose.onset && w.suggestion.onset) ? toMin(dose.onset)-toMin(w.suggestion.onset) : 0;
-    const dOff = (dose.offset && w.suggestion.offset) ? toMin(dose.offset)-toMin(w.suggestion.offset) : 0;
+    const dOn = (dose.onset && w.suggestion.onset) ? dm(dose.onset)-dm(w.suggestion.onset) : 0;
+    const dOff = (dose.offset && w.suggestion.offset) ? dm(dose.offset)-dm(w.suggestion.offset) : 0;
     if (dOn || dOff) box.append(h("p", { class:"hint" },
-      "Abweichung von deinen Einträgen: Beginn " + (dOn>0?"+":"") + dOn + " min, Ende " + (dOff>0?"+":"") + dOff + " min."));
+      "Abweichung von deinen Einträgen: Beginn " + (dOn>0?"+":"") + dOn + " min, Ende " + (dOff>0?"+":"") + dOff + " min"));
   }
 
   // Streifen: sechs Stunden ab Einnahme, gefärbt von den Einträgen, die hineinfallen
-  const { out, late } = bucketRatings(dose);
+  const { out, late } = bucketRatings(dose, currentDate);
   const strip = h("div", { class:"strip" });
   out.forEach((r,i) => strip.append(h("div", {
     class:"cell" + (late[i] ? " late" : ""),
@@ -1210,10 +1358,7 @@ function verlaufBlock(dose, idx){
     row.append(h("div", { class:"entry-head" },
       h("input", { type:"time", class:"et", value:c.t, "aria-label":"Uhrzeit des Eintrags",
         onchange:e => { if (e.target.value){ c.t = e.target.value; save(currentDate); renderTracking(); } }}),
-      h("input", { type:"number", class:"ep", inputmode:"numeric", min:"30", max:"220",
-        placeholder:"Puls", "aria-label":"Puls", value: c.pulse ?? "",
-        oninput:e => { c.pulse = e.target.value === "" ? null : Number(e.target.value); save(currentDate); }}),
-      checkLate(c) ? h("span", { class:"late-flag" }, "nachgetragen") : null,
+      checkLate(c, currentDate) ? h("span", { class:"late-flag" }, "nachgetragen") : null,
       h("button", { class:"del", type:"button", onclick:() => {
         dose.checks.splice(dose.checks.indexOf(c), 1); save(currentDate); renderTracking(); }}, "Löschen")));
     row.append(segmented(R_LABELS.map((t,v) => ({ v, t })), c.r, v => {
@@ -1232,7 +1377,7 @@ function verlaufBlock(dose, idx){
     inner.append(row);
   });
   inner.append(h("button", { class:"addentry", type:"button", onclick:() => {
-    dose.checks.push({ id:newId(), t:nowHM(), r:null, note:"", pulse:null, at:new Date().toISOString() });
+    dose.checks.push({ id:newId(), t:nowHM(), r:null, note:"", at:new Date().toISOString() });
     hoursOpen[idx] = true; save(currentDate); renderTracking();
   }}, "+ Eintrag hinzufügen"));
 
@@ -1242,7 +1387,7 @@ function verlaufBlock(dose, idx){
   return box;
 }
 
-// Fenster ohne Medikament: Uhrzeit, Puls, Notiz. Keine Bewertung, kein Streifen.
+// Fenster ohne Medikament: Uhrzeit und Notiz. Keine Bewertung, kein Streifen.
 function refBlock(dose, idx, box){
   const list = sortedChecks(dose);
   const open = !!hoursOpen[idx];
@@ -1262,9 +1407,6 @@ function refBlock(dose, idx, box){
     row.append(h("div", { class:"entry-head" },
       h("input", { type:"time", class:"et", value:c.t, "aria-label":"Uhrzeit des Eintrags",
         onchange:e => { if (e.target.value){ c.t = e.target.value; save(currentDate); renderTracking(); } }}),
-      h("input", { type:"number", class:"ep", inputmode:"numeric", min:"30", max:"220",
-        placeholder:"Puls", "aria-label":"Puls", value: c.pulse ?? "",
-        oninput:e => { c.pulse = e.target.value === "" ? null : Number(e.target.value); save(currentDate); }}),
       h("button", { class:"del", type:"button", onclick:() => {
         dose.checks.splice(dose.checks.indexOf(c), 1); save(currentDate); renderTracking(); }}, "Löschen")));
     const ta = h("textarea", { rows:"3", placeholder:"Was fällt dir auf?",
@@ -1273,7 +1415,7 @@ function refBlock(dose, idx, box){
     inner.append(row);
   });
   inner.append(h("button", { class:"addentry", type:"button", onclick:() => {
-    dose.checks.push({ id:newId(), t:nowHM(), r:null, note:"", pulse:null, at:new Date().toISOString() });
+    dose.checks.push({ id:newId(), t:nowHM(), r:null, note:"", at:new Date().toISOString() });
     hoursOpen[idx] = true; save(currentDate); renderTracking();
   }}, "+ Eintrag hinzufügen"));
 
@@ -1286,20 +1428,21 @@ function positionBracket(bracket, dose){
   const bar = bracket.firstChild;
   const w = effWindow(dose);
   if (!dose.time || !w.onset || !w.offset){ bar.style.width = "0"; return; }
-  const t0 = toMin(dose.time), span = HOURS*60;
-  const a = Math.max(0, Math.min(1, (toMin(w.onset)-t0)/span));
-  const b = Math.max(0, Math.min(1, (toMin(w.offset)-t0)/span));
+  const t0 = dm(dose.time), span = HOURS*60;
+  const a = Math.max(0, Math.min(1, (dm(w.onset)-t0)/span));
+  const b = Math.max(0, Math.min(1, (dm(w.offset)-t0)/span));
   bar.style.left = (a*100)+"%";
   bar.style.width = (Math.max(0, b-a)*100)+"%";
 }
 function updateStrip(){ /* Streifen hängt nur an Bewertungen, kein Neuaufbau nötig */ }
 
 function reviewCard(day){
-  const rated = ["f1","f2"].filter(k => day.review[k].init != null && day.review[k].endur != null).length;
-  return block(2,
+  const shown = IDX.filter(i => winUsed(day, i));
+  const rated = shown.filter(i => { const r = day.review[winKey(i)]; return r.init != null && r.endur != null; }).length;
+  return block(REVIEW,
     [h("h2", {}, h("span", { class:"num" }, "✓"), "Tagesabschluss"),
-     h("p", { class:"sum" }, rated === 2 ? "Beide Fenster bewertet"
-       : rated === 1 ? "Ein Fenster bewertet" : "Noch offen")],
+     h("p", { class:"sum" }, rated === shown.length && rated > 0 ? "Alle Fenster bewertet"
+       : rated ? rated + " von " + shown.length + " bewertet" : "Noch offen")],
     () => {
       const wrap = h("div");
       const aspect = (name, extra, ...kids) =>
@@ -1307,7 +1450,8 @@ function reviewCard(day){
           h("div", { class:"ah" }, h("span", { class:"an" }, name), extra ? h("span", { class:"ax" }, extra) : null),
           ...kids);
 
-      [["f1","Fenster 1",0],["f2","Fenster 2",1]].forEach(([key,label,idx]) => {
+      shown.forEach(idx => {
+        const key = winKey(idx), label = "Fenster " + (idx+1);
         const r = day.review[key], w = effWindow(day.doses[idx]);
         const g = h("div", { class:"wingroup", "data-w":String(idx) });
         const winOpen = openWin === idx;
@@ -1400,15 +1544,18 @@ function inPeriod(days, n, offset = 0){
   return days.filter(d => d.date >= start && d.date <= end);
 }
 const avg = arr => { const v = arr.filter(x => x != null && !Number.isNaN(x)); return v.length ? v.reduce((a,b)=>a+b,0)/v.length : null; };
+const median = arr => { const v = arr.filter(x => x != null).sort((a,b) => a-b); if (!v.length) return null; const m = v.length >> 1; return v.length % 2 ? v[m] : (v[m-1] + v[m]) / 2; };
 const fmt1 = v => v == null ? "–" : (Math.round(v*10)/10).toString().replace(".",",");
 const fmtMin = v => v == null ? "–" : Math.round(v) + " min";
+const fmtPct = v => v == null ? "–" : Math.round(v*100) + " %";
+const toQuota = v => v == null ? null : (v ? 1 : 0);
 
-// Nur Fenster zählen, deren Einnahme nicht ausgelassen wurde.
-// Alle Fenster als flache Liste, damit sich beliebige Teilmengen auswerten lassen
+// Alle benutzten Fenster als flache Liste, damit sich beliebige Teilmengen auswerten lassen
 function winList(days){
   const out = [];
-  days.forEach(d => [0,1].forEach(i =>
-    out.push({ d, i, k: i ? "f2" : "f1", on: doseActive(d.doses[i]) })));
+  days.forEach(d => IDX.forEach(i => {
+    if (winUsed(d, i)) out.push({ d, i, k:winKey(i), on:doseActive(d.doses[i]) });
+  }));
   return out;
 }
 function behav(list){
@@ -1418,30 +1565,35 @@ function behav(list){
     init:  g(x => x.d.review[x.k].init),
     endur: g(x => x.d.review[x.k].endur),
     imp:   g(x => x.d.review[x.k].impulses),
-    avoid: g(x => { const v = x.d.review[x.k].avoid; return v == null ? null : (v ? 1 : 0); }),
-    pulse: g(x => {
-      const dz = x.d.doses[x.i];
-      const vals = [dz.pulse, ...(dz.checks || []).map(c => c.pulse)].filter(v => v != null);
-      return vals.length ? vals.reduce((a,b)=>a+b,0) / vals.length : null;
-    })
+    avoid: g(x => toQuota(x.d.review[x.k].avoid))
   };
 }
-function rv(d, i, k, field){ return doseActive(d.doses[i]) ? d.review[k][field] : null; }
+// Bewertung eines Fensters, nur wenn die Einnahme nicht ausgelassen wurde
+function rv(d, i, field){
+  if (!doseActive(d.doses[i])) return null;
+  const r = d.review[winKey(i)];
+  return r && r[field] != null ? r[field] : null;
+}
 function collect(days){
   const m = days.map(metrics);
-  const pick = (i,k,field) => days.filter(d => doseActive(d.doses[i])).map(d => d.review[k][field]);
-  const bool = arr => arr.map(v => v == null ? null : (v ? 1 : 0));
   return {
-    n: days.length,
-    lat1: avg(m.map(x=>x.lat1)), lat2: avg(m.map(x=>x.lat2)),
-    len1: avg(m.map(x=>x.len1)), len2: avg(m.map(x=>x.len2)),
-    gap:  avg(m.map(x=>x.gap)),
-    init1: avg(pick(0,"f1","init")),      init2: avg(pick(1,"f2","init")),
-    end1:  avg(pick(0,"f1","endur")),     end2:  avg(pick(1,"f2","endur")),
-    imp1:  avg(pick(0,"f1","impulses")),  imp2:  avg(pick(1,"f2","impulses")),
-    avoid: avg(bool(pick(0,"f1","avoid")).concat(bool(pick(1,"f2","avoid"))))
+    n:      days.length,
+    lat:    IDX.map(i => avg(m.map(x => x.lat[i]))),
+    len:    IDX.map(i => avg(m.map(x => x.len[i]))),
+    gaps:   IDX.slice(0, -1).map(i => avg(m.map(x => x.gaps[i]))),
+    latAll: avg(m.flatMap(x => x.lat)),
+    lenAll: avg(m.flatMap(x => x.len)),
+    gap:    avg(m.flatMap(x => x.gaps)),
+    init:   IDX.map(i => avg(days.map(d => rv(d, i, "init")))),
+    end:    IDX.map(i => avg(days.map(d => rv(d, i, "endur")))),
+    imp:    IDX.map(i => avg(days.map(d => rv(d, i, "impulses")))),
+    avoid:  IDX.map(i => avg(days.map(d => toQuota(rv(d, i, "avoid"))))),
+    avoidAll: avg(days.flatMap(d => IDX.map(i => toQuota(rv(d, i, "avoid")))))
   };
 }
+// Fenster, die im Zeitraum überhaupt vorkommen. Fenster 1 und 2 immer, Fenster 3 nur bei Daten.
+function usedWins(days){ return IDX.filter(i => i < OPTIONAL_FROM || days.some(d => winUsed(d, i))); }
+
 function sparkline(values){
   const v = values.filter(x => x != null);
   if (v.length < 2) return h("div", { style:"height:26px" });
@@ -1466,7 +1618,7 @@ function kpi(label, value, unit, delta, series, betterUp){
     d, series ? sparkline(series) : null);
 }
 
-const AX0 = 6*60, AX1 = 22*60;                 // feste Achse 06:00 bis 22:00
+const AX0 = 6*60, AX1 = 24*60;                 // feste Achse 06:00 bis 24:00, auch für eine späte dritte Dosis
 const axPct = m => Math.max(0, Math.min(100, (m - AX0) / (AX1 - AX0) * 100));
 
 function bar(cls, a, b, title){
@@ -1487,7 +1639,7 @@ function placeX(el, pct){
 }
 function axisRow(){
   const r = h("div", { class:"tl-axis" });
-  for (let hh = 6; hh <= 22; hh += 4){
+  for (let hh = 6; hh <= 24; hh += 6){
     const t = h("span", {}, String(hh).padStart(2,"0"));
     placeX(t, axPct(hh*60));
     r.append(t);
@@ -1495,60 +1647,22 @@ function axisRow(){
   return r;
 }
 
-// Durchschnittstag: ein Streifen aus den Mittelwerten
-function avgDayStrip(days){
-  const g = (f) => avg(days.map(f).filter(v => v != null));
-  const t1 = g(d => d.doses[0].time && doseActive(d.doses[0]) ? toMin(d.doses[0].time) : null);
-  const t2 = g(d => d.doses[1].time && doseActive(d.doses[1]) ? toMin(d.doses[1].time) : null);
-  const o1 = g(d => { const w = effWindow(d.doses[0]); return w.onset ? toMin(w.onset) : null; });
-  const e1 = g(d => { const w = effWindow(d.doses[0]); return w.offset ? toMin(w.offset) : null; });
-  const o2 = g(d => { const w = effWindow(d.doses[1]); return w.onset ? toMin(w.onset) : null; });
-  const e2 = g(d => { const w = effWindow(d.doses[1]); return w.offset ? toMin(w.offset) : null; });
-  if (o1 == null && o2 == null) return null;
-
-  const lane = h("div", { class:"tl-lane tall" });
-  if (t1 != null && o1 != null) lane.append(bar("lat", t1, o1, "Latenz 1"));
-  if (o1 != null && e1 != null) lane.append(bar("w1", o1, e1, "Fenster 1"));
-  if (e1 != null && o2 != null && o2 > e1) lane.append(bar("gap", e1, o2, "Loch"));
-  if (t2 != null && o2 != null) lane.append(bar("lat", t2, o2, "Latenz 2"));
-  if (o2 != null && e2 != null) lane.append(bar("w2", o2, e2, "Fenster 2"));
-  if (t1 != null) lane.append(dot("d1", t1, "Einnahme 1"));
-  if (t2 != null) lane.append(dot("d2", t2, "Einnahme 2"));
-
-  // Werte als feste Legende statt als frei platzierte Marken: kollidiert nie
-  const T = m => m == null ? "–" : toHM(Math.round(m));
-  const gapMin = (e1 != null && o2 != null && o2 > e1) ? Math.round(o2 - e1) : null;
-  const rows = [
-    ["dot d1", "Einnahme 1", T(t1)],
-    ["bar w1", "Fenster 1",  o1 == null ? "–" : T(o1) + " – " + T(e1)],
-    ["bar gap","Loch",       gapMin == null ? "–" : dur(gapMin)],
-    ["dot d2", "Einnahme 2", T(t2)],
-    ["bar w2", "Fenster 2",  o2 == null ? "–" : T(o2) + " – " + T(e2)]
-  ];
-  const leg = h("div", { class:"avgleg" }, rows.map(([c,n,v]) =>
-    h("div", { class:"al-row" },
-      h("i", { class:"al-sw " + c }),
-      h("span", { class:"al-n" }, n),
-      h("span", { class:"al-v" }, v))));
-  return h("div", {}, lane, axisRow(), leg);
-}
-
-// Zeitleiste: eine Zeile je Tag
+// Zeitleiste: eine Zeile je Tag, jedes Fenster in seiner eigenen Spur
 function timeline(days){
   const wrap = h("div", { class:"tl" });
-  let lastDose = null;
+  let lastLvl = null;
   days.forEach(d => {
-    const lbl = doseLabel(d);
-    if (lastDose != null && lbl !== lastDose)
-      wrap.append(h("div", { class:"tl-split" }, h("i"), h("span", {}, lbl || "–"), h("i")));
-    lastDose = lbl;
+    const lvl = doseLevel(d);
+    if (lvl != null && lastLvl != null && lvl !== lastLvl)
+      wrap.append(h("div", { class:"tl-split" }, h("i"), h("span", {}, lvl + " mg"), h("i")));
+    if (lvl != null) lastLvl = lvl;
     const row = h("div", { class:"tl-row" });
     row.append(h("span", { class:"tl-day" }, WD[fromIso(d.date).getDay()] + " " + fromIso(d.date).getDate() + "."));
     const lane = h("div", { class:"tl-lane" });
-    [0,1].forEach(i => {
+    IDX.forEach(i => {
       const dz = d.doses[i], w = effWindow(dz);
-      if (dz.time && doseActive(dz)) lane.append(dot("d"+(i+1), toMin(dz.time)));
-      if (w.onset && w.offset) lane.append(bar("w"+(i+1), toMin(w.onset), toMin(w.offset)));
+      if (dz.time && dz.taken === true) lane.append(dot("d"+(i+1), dm(dz.time), "Einnahme " + (i+1) + " · " + dz.time));
+      if (w.onset && w.offset) lane.append(bar("w"+(i+1), dm(w.onset), dm(w.offset), "Fenster " + (i+1) + " · " + w.onset + "–" + w.offset));
     });
     row.append(lane);
     wrap.append(row);
@@ -1557,22 +1671,122 @@ function timeline(days){
   return wrap;
 }
 
-// Verhalten als gruppierte Balken, Fenster 1 gegen Fenster 2
+// Gruppierte Balken. rows: { name, max, fmt?, vals:[{ v, c }] }
 function groupBars(rows){
   const box = h("div", { class:"gbars" });
   rows.forEach(r => {
     const g = h("div", { class:"gb" }, h("span", { class:"gb-n" }, r.name));
     const tr = h("div", { class:"gb-tr" });
-    [[r.a,"b1"],[r.b, r.cb || "b2"]].forEach(([v,c]) => {
+    r.vals.forEach(({ v, c }) => {
       const line = h("div", { class:"gb-line" });
       const fill = h("div", { class:"gb-fill " + c });
       fill.style.width = (v == null ? 0 : Math.max(2, v / r.max * 100)) + "%";
-      line.append(fill, h("span", { class:"gb-v" }, v == null ? "–" : fmt1(v)));
+      line.append(fill, h("span", { class:"gb-v" }, v == null ? "–" : (r.fmt || fmt1)(v)));
       tr.append(line);
     });
     g.append(tr); box.append(g);
   });
   return box;
+}
+function legend(items){
+  return h("div", { class:"leg" }, items.map(([cls, label, color]) =>
+    h("span", {}, h("i", { class:"sw " + cls, style: color ? "background:" + color : null }), label)));
+}
+
+/* ---------- Wirkprofil: Anteil der Fenster mit Wirkung, nach Zeit seit der Einnahme ---------- */
+// Ordinal-Rampe (eine Farbe, helligkeitsgestuft, validiert für die dunkle Fläche): höhere Dosis = heller
+const DOSE_RAMP = { 10:"#007a7b", 20:"#1d9999", 30:"#49b8b8", 40:"#6cd9d8" };
+const doseColor = mg => DOSE_RAMP[mg] || DOSE_RAMP[Object.keys(DOSE_RAMP).map(Number)
+  .reduce((a,b) => Math.abs(b-mg) < Math.abs(a-mg) ? b : a)];
+const PROF_SPAN = HOURS*60, PROF_STEP = 10;
+
+function profileData(days){
+  const groups = {};
+  days.forEach(d => d.doses.forEach(dz => {
+    if (dz.taken !== true || !dz.time || dz.mg == null) return;
+    const w = effWindow(dz);
+    if (!w.onset || !w.offset) return;              // offene Fenster zählen nicht, sonst würde die Kurve geraten
+    const t0 = dm(dz.time), a = dm(w.onset) - t0, b = dm(w.offset) - t0;
+    if (a < 0 || b < a) return;
+    (groups[dz.mg] ||= []).push([a, b]);
+  }));
+  return Object.keys(groups).map(Number).sort((x,y) => x-y).map(mg => {
+    const wins = groups[mg], pts = [];
+    for (let t = 0; t <= PROF_SPAN; t += PROF_STEP)
+      pts.push([t, wins.filter(([a,b]) => t >= a && t <= b).length / wins.length]);
+    return { mg, n:wins.length, pts,
+             lat:median(wins.map(w => w[0])), len:median(wins.map(w => w[1] - w[0])) };
+  });
+}
+const SVGNS = "http://www.w3.org/2000/svg";
+function S(tag, attrs = {}, text){
+  const e = document.createElementNS(SVGNS, tag);
+  for (const [k,v] of Object.entries(attrs)) if (v != null) e.setAttribute(k, v);
+  if (text != null) e.textContent = text;
+  return e;
+}
+const hmRel = t => Math.floor(t/60) + ":" + String(t % 60).padStart(2,"0") + " h";
+
+function profileBlock(series){
+  const W = 320, H = 156, L = 34, R = 8, T = 8, B = 24;
+  const pw = W - L - R, ph = H - T - B;
+  const x = t => L + t / PROF_SPAN * pw, y = v => T + (1 - v) * ph;
+  const svg = S("svg", { viewBox:`0 0 ${W} ${H}`, class:"prof", role:"img",
+    "aria-label":"Anteil der Fenster mit Wirkung nach Stunden seit der Einnahme" });
+  [0, .5, 1].forEach(v => {
+    svg.append(S("line", { x1:L, x2:W-R, y1:y(v), y2:y(v), class:"pg" }));
+    svg.append(S("text", { x:L-6, y:y(v)+3.5, class:"plab", "text-anchor":"end" }, Math.round(v*100) + " %"));
+  });
+  for (let hh = 0; hh <= HOURS; hh++)
+    svg.append(S("text", { x:x(hh*60), y:H-7, class:"plab",
+      "text-anchor": hh === 0 ? "start" : hh === HOURS ? "end" : "middle" }, hh === HOURS ? HOURS + " h" : String(hh)));
+  series.forEach(sr => svg.append(S("polyline", {
+    points: sr.pts.map(([t,v]) => x(t).toFixed(1) + "," + y(v).toFixed(1)).join(" "),
+    class:"pl", stroke:doseColor(sr.mg), "stroke-opacity": sr.n < 3 ? .45 : 1 })));
+
+  // Fadenkreuz und Werte beim Berühren oder Darüberfahren
+  const cross = S("line", { y1:T, y2:T+ph, class:"pcross", visibility:"hidden" });
+  const hit = S("rect", { x:L, y:T, width:pw, height:ph, fill:"transparent" });
+  svg.append(cross, hit);
+  const tip = h("div", { class:"prof-tip" });
+  const wrapEl = h("div", { class:"prof-wrap" }, svg, tip);
+  const show = ev => {
+    const r = svg.getBoundingClientRect();
+    const sx = (ev.clientX - r.left) / r.width * W;
+    const t = Math.max(0, Math.min(PROF_SPAN, Math.round((sx - L) / pw * PROF_SPAN / PROF_STEP) * PROF_STEP));
+    cross.setAttribute("x1", x(t)); cross.setAttribute("x2", x(t)); cross.setAttribute("visibility", "visible");
+    tip.textContent = "";
+    tip.append(h("div", { class:"tt" }, hmRel(t) + " nach Einnahme"),
+      ...series.map(sr => h("div", { class:"r" }, h("i", { style:"background:" + doseColor(sr.mg) }),
+        sr.mg + " mg", h("b", {}, fmtPct(sr.pts[t / PROF_STEP][1])))));
+    const px = x(t) / W * r.width;
+    tip.style.left = Math.max(70, Math.min(r.width - 70, px)) + "px";
+    tip.classList.add("on");
+  };
+  const hide = () => { cross.setAttribute("visibility", "hidden"); tip.classList.remove("on"); };
+  hit.addEventListener("pointermove", show);
+  hit.addEventListener("pointerdown", show);
+  hit.addEventListener("pointerleave", hide);
+  hit.addEventListener("pointercancel", hide);
+
+  // Tabelle als gleichwertige Lesart
+  const tbl = h("table", { class:"tbl hidden" });
+  tbl.append(h("thead", {}, h("tr", {}, h("th", {}, "Dosis"), h("th", {}, "Latenz"), h("th", {}, "Dauer"),
+    ...[1,2,3,4,5].map(hh => h("th", {}, hh + " h")))));
+  tbl.append(h("tbody", {}, series.map(sr => h("tr", { class: sr.n < 3 ? "thin" : "" },
+    h("td", {}, sr.mg + " mg ", h("span", { class:"n" }, sr.n + "×")),
+    h("td", {}, fmtMin(sr.lat)), h("td", {}, fmtMin(sr.len)),
+    ...[1,2,3,4,5].map(hh => h("td", {}, fmtPct(sr.pts[hh*60 / PROF_STEP][1])))))));
+  const tblWrap = h("div", { class:"scroll-x" }, tbl);
+  const toggle = h("button", { class:"tview", type:"button", onclick:() => {
+    const on = tbl.classList.toggle("hidden");
+    toggle.textContent = on ? "Als Tabelle" : "Als Kurve";
+    wrapEl.classList.toggle("hidden", !on);
+  }}, "Als Tabelle");
+
+  return h("div", {},
+    legend(series.map(sr => ["", sr.mg + " mg · " + sr.n + "×", doseColor(sr.mg)])),
+    wrapEl, tblWrap, toggle);
 }
 
 function renderUebersicht(){
@@ -1620,46 +1834,37 @@ function renderUebersicht(){
   }
   const c = collect(cur), p = collect(prev);
   const dl = (a,b) => (a == null || b == null) ? null : a-b;
+  const wins = usedWins(cur);
 
-  const strip = avgDayStrip(cur);
-  if (strip) root.append(h("div", { class:"card" }, h("h2", {}, "Durchschnittstag"), strip));
+  // Wirkprofil
+  const prof = profileData(cur);
+  root.append(h("div", { class:"card" }, h("h2", {}, "Wirkprofil"),
+    prof.length ? profileBlock(prof) : h("p", { class:"sub" }, "Noch keine abgeschlossenen Wirkfenster")));
 
+  // Zeitleiste
   root.append(h("div", { class:"card" }, h("h2", {}, "Zeitleiste"),
+    legend(wins.map(i => ["w" + (i+1), "Fenster " + (i+1)])),
     h("div", { class:"scroll-y" }, timeline(cur.slice(-42)))));
 
-  const latAll = avg([c.lat1,c.lat2]), latPrev = avg([p.lat1,p.lat2]);
-  const lenAll = avg([c.len1,c.len2]), lenPrev = avg([p.len1,p.len2]);
+  // Kennzahlen
   root.append(h("div", { class:"card" },
     h("div", { class:"kpis" },
-      kpi("Latenz", fmtMin(latAll), "", dl(latAll,latPrev), cur.map(d=>avg([metrics(d).lat1,metrics(d).lat2])), false),
-      kpi("Wirkdauer", fmtMin(lenAll), "", dl(lenAll,lenPrev), cur.map(d=>avg([metrics(d).len1,metrics(d).len2])), true),
-      kpi("Loch", fmtMin(c.gap), "", dl(c.gap,p.gap), cur.map(d=>metrics(d).gap), false),
+      kpi("Latenz", fmtMin(c.latAll), "", dl(c.latAll, p.latAll), cur.map(d => avg(metrics(d).lat)), false),
+      kpi("Wirkdauer", fmtMin(c.lenAll), "", dl(c.lenAll, p.lenAll), cur.map(d => avg(metrics(d).len)), true),
+      kpi("Loch", fmtMin(c.gap), "", dl(c.gap, p.gap), cur.map(d => avg(metrics(d).gaps)), false),
       kpi("Erfasste Tage", String(cur.length)))));
 
-  const maxImp = Math.max(1, ...cur.flatMap(d => [rv(d,0,"f1","impulses"), rv(d,1,"f2","impulses")].filter(v => v != null)));
+  // Verhalten je Fenster
+  const maxImp = Math.max(1, ...cur.flatMap(d => wins.map(i => rv(d, i, "impulses"))).filter(v => v != null));
+  const per = (arr) => wins.map(i => ({ v:arr[i], c:"w" + (i+1) }));
   root.append(h("div", { class:"card" }, h("h2", {}, "Verhalten"),
-    h("div", { class:"leg" },
-      h("span", {}, h("i", { class:"sw b1" }), "Fenster 1"),
-      h("span", {}, h("i", { class:"sw b2" }), "Fenster 2")),
+    legend(wins.map(i => ["w" + (i+1), "Fenster " + (i+1)])),
     groupBars([
-      { name:"Aufgabenstart", a:c.init1, b:c.init2, max:3 },
-      { name:"Durchhalten",   a:c.end1,  b:c.end2,  max:3 },
-      { name:"Impulskontrolle", a:c.imp1, b:c.imp2, max:maxImp },
-      { name:"Vermeidung",    a:c.avoid == null ? null : c.avoid*3, b:null, max:3 }
+      { name:"Aufgabenstart",   vals:per(c.init),  max:3 },
+      { name:"Durchhalten",     vals:per(c.end),   max:3 },
+      { name:"Impulskontrolle", vals:per(c.imp),   max:maxImp },
+      { name:"Vermeidung",      vals:per(c.avoid), max:1, fmt:fmtPct }
     ])));
-
-  // Puls
-  const pre = avg(cur.flatMap(d => [0,1].map(i => pulseOf(d.doses[i]).pre)));
-  const win = avg(cur.flatMap(d => [0,1].map(i => pulseOf(d.doses[i]).win)));
-  const dlt = avg(cur.flatMap(d => [0,1].map(i => pulseOf(d.doses[i]).delta)));
-  const nPre = cur.filter(d => [0,1].some(i => pulseOf(d.doses[i]).pre != null)).length;
-  const nWin = cur.filter(d => [0,1].some(i => pulseOf(d.doses[i]).win != null)).length;
-  const nDlt = cur.filter(d => [0,1].some(i => pulseOf(d.doses[i]).delta != null)).length;
-  if (pre != null || win != null) root.append(h("div", { class:"card" }, h("h2", {}, "Puls"),
-    h("div", { class:"kpis" },
-      kpi("Vor der Einnahme", pre == null ? "–" : Math.round(pre), "bpm · " + nPre + "d"),
-      kpi("1–3 h danach", win == null ? "–" : Math.round(win), "bpm · " + nWin + "d"),
-      kpi("Differenz", dlt == null ? "–" : (dlt > 0 ? "+" : "") + Math.round(dlt), "bpm · " + nDlt + "d"))));
 
   // Mit und ohne Medikament
   const wl = winList(cur);
@@ -1667,66 +1872,46 @@ function renderUebersicht(){
   if (offW.length && onW.length){
     const A = behav(onW), B = behav(offW);
     const mx = Math.max(1, A.imp || 0, B.imp || 0);
+    const pair = (a, b) => [{ v:a, c:"med" }, { v:b, c:"off" }];
     root.append(h("div", { class:"card" }, h("h2", {}, "Mit und ohne Medikament"),
-      h("div", { class:"leg" },
-        h("span", {}, h("i", { class:"sw b1" }), "mit · " + A.n),
-        h("span", {}, h("i", { class:"sw off" }), "ohne · " + B.n)),
+      legend([["med", "mit · " + A.n], ["off", "ohne · " + B.n]]),
       groupBars([
-        { name:"Aufgabenstart",  a:A.init,  b:B.init,  max:3, cb:"off" },
-        { name:"Durchhalten",    a:A.endur, b:B.endur, max:3, cb:"off" },
-        { name:"Impulskontrolle",a:A.imp,   b:B.imp,   max:mx, cb:"off" },
-        { name:"Vermeidung",     a:A.avoid == null ? null : A.avoid*3,
-                                 b:B.avoid == null ? null : B.avoid*3, max:3, cb:"off" },
-        { name:"Puls",           a:A.pulse, b:B.pulse, max:Math.max(1, A.pulse||0, B.pulse||0), cb:"off" }
+        { name:"Aufgabenstart",   vals:pair(A.init,  B.init),  max:3 },
+        { name:"Durchhalten",     vals:pair(A.endur, B.endur), max:3 },
+        { name:"Impulskontrolle", vals:pair(A.imp,   B.imp),   max:mx },
+        { name:"Vermeidung",      vals:pair(A.avoid, B.avoid), max:1, fmt:fmtPct }
       ])));
   }
 
-  // Nach Dosis
-  const groups = {};
-  all.forEach(d => { const k = doseLabel(d); if (k) (groups[k] ||= []).push(d); });
-  const keys = Object.keys(groups).sort();
-  if (keys.length >= 2){
+  // Nach Dosis und nach Tagesart
+  const compare = (title, firstHead, groups, labelOf) => {
+    const keys = Object.keys(groups).sort();
+    if (keys.length < 2) return;
     const tbl = h("table", { class:"tbl" });
     tbl.append(h("thead", {}, h("tr", {},
-      h("th", {}, "Dosis"), h("th", {}, "Wirkdauer"), h("th", {}, "Start"), h("th", {}, "Durchhalten"), h("th", {}, "Impulse"))));
+      h("th", {}, firstHead), h("th", {}, "Wirkdauer"), h("th", {}, "Start"), h("th", {}, "Durchhalten"), h("th", {}, "Impulse"))));
     const tb = h("tbody");
     keys.forEach(k => {
       const g = collect(groups[k]), b = behav(winList(groups[k]));
       tb.append(h("tr", { class: groups[k].length < 3 ? "thin" : "" },
-        h("td", {}, k, " ", h("span", { class:"n" }, groups[k].length + "d")),
-        h("td", {}, fmtMin(avg([g.len1,g.len2]))), h("td", {}, fmt1(b.init)),
+        h("td", {}, labelOf(k), " ", h("span", { class:"n" }, groups[k].length + "d")),
+        h("td", {}, fmtMin(g.lenAll)), h("td", {}, fmt1(b.init)),
         h("td", {}, fmt1(b.endur)), h("td", {}, fmt1(b.imp))));
     });
     tbl.append(tb);
-    root.append(h("div", { class:"card" }, h("h2", {}, "Nach Dosis"), h("div", { class:"scroll-x" }, tbl)));
-  }
-
-  // Nach Tagesart
-  const sg = {};
-  cur.forEach(d => { if (d.status) (sg[d.status] ||= []).push(d); });
-  const sKeys = Object.keys(sg).sort();
-  if (sKeys.length >= 2){
-    const t = h("table", { class:"tbl" });
-    t.append(h("thead", {}, h("tr", {},
-      h("th", {}, "Tagesart"), h("th", {}, "Wirkdauer"), h("th", {}, "Start"), h("th", {}, "Durchhalten"), h("th", {}, "Impulse"))));
-    const tb = h("tbody");
-    sKeys.forEach(k => {
-      const g = collect(sg[k]), b = behav(winList(sg[k]));
-      tb.append(h("tr", { class: sg[k].length < 3 ? "thin" : "" },
-        h("td", {}, statusLabel(k), " ", h("span", { class:"n" }, sg[k].length + "d")),
-        h("td", {}, fmtMin(avg([g.len1,g.len2]))), h("td", {}, fmt1(b.init)),
-        h("td", {}, fmt1(b.endur)), h("td", {}, fmt1(b.imp))));
-    });
-    t.append(tb);
-    root.append(h("div", { class:"card" }, h("h2", {}, "Nach Tagesart"), h("div", { class:"scroll-x" }, t)));
-  }
+    root.append(h("div", { class:"card" }, h("h2", {}, title), h("div", { class:"scroll-x" }, tbl)));
+  };
+  const byDose = {};
+  all.forEach(d => { const k = doseLabel(d); if (k) (byDose[k] ||= []).push(d); });
+  compare("Nach Dosis", "Dosis", byDose, k => k);
+  const byStatus = {};
+  cur.forEach(d => { if (d.status) (byStatus[d.status] ||= []).push(d); });
+  compare("Nach Tagesart", "Tagesart", byStatus, statusLabel);
 
   // Nebenwirkungen: letzte 7 Tage gegen davor
   const se = seCounts(cur);
   if (se.keys.length) root.append(h("div", { class:"card" }, h("h2", {}, "Nebenwirkungen"),
-    h("div", { class:"leg" },
-      h("span", {}, h("i", { class:"sw warn" }), "letzte 7 Tage"),
-      h("span", {}, h("i", { class:"sw warn dim" }), "davor")),
+    legend([["warn", "letzte 7 Tage"], ["warn dim", "davor"]]),
     h("div", { class:"bars" }, se.keys.map(k => h("div", { class:"bar" },
       h("span", { class:"nm" }, k),
       h("span", { class:"tr" },
@@ -1746,31 +1931,37 @@ function renderUebersicht(){
 function seCounts(days){
   const t = logicalToday(), cut = shiftDate(t, -6);
   const recent = {}, older = {};
-  days.forEach(d => [["f1",0],["f2",1]].forEach(([k,i]) => {
-    if (!doseActive(d.doses[i])) return;
+  days.forEach(d => IDX.forEach(i => {
+    if (!winUsed(d, i) || !doseActive(d.doses[i])) return;
     const tgt = d.date >= cut ? recent : older;
-    d.review[k].se.forEach(x => tgt[x] = (tgt[x]||0)+1);
+    (d.review[winKey(i)].se || []).forEach(x => tgt[x] = (tgt[x]||0)+1);
   }));
   const keys = [...new Set([...Object.keys(recent), ...Object.keys(older)])]
     .sort((a,b) => ((recent[b]||0)+(older[b]||0)) - ((recent[a]||0)+(older[a]||0)));
   const max = Math.max(1, ...keys.map(k => Math.max(recent[k]||0, older[k]||0)));
   return { keys, recent, older, max };
 }
+// Vollständig: jedes benutzte Fenster bewertet, jede genommene Einnahme mit Wirkbeginn und Wirkende
 function quality(days){
   let full = 0, rows = 0, late = 0;
   days.forEach(d => {
-    const ok = ["f1","f2"].every(k => d.review[k].init != null && d.review[k].endur != null)
-            && d.doses.every(x => x.taken === false || (x.time && effWindow(x).onset));
+    const ws = IDX.filter(i => winUsed(d, i));
+    const ok = ws.every(i => { const r = d.review[winKey(i)]; return r.init != null && r.endur != null; })
+            && ws.every(i => { const x = d.doses[i], w = effWindow(x);
+                               return x.taken === false || (x.time && w.onset && w.offset); });
     if (ok) full++;
     d.doses.forEach(x => { if (!doseActive(x)) return;
-      (x.checks || []).forEach(c => { if (c.r != null){ rows++; if (checkLate(c)) late++; } }); });
+      (x.checks || []).forEach(c => { if (c.r != null){ rows++; if (checkLate(c, d.date)) late++; } }); });
   });
   return { full, rows, late };
 }
+// Eine leere dritte Einnahme ist nicht geplant, nicht vergessen
 function adherence(days){
   let taken = 0, skipped = 0, missing = 0;
-  days.forEach(d => d.doses.forEach(x => {
-    if (x.taken === true) taken++; else if (x.taken === false) skipped++; else missing++;
+  days.forEach(d => d.doses.forEach((x,i) => {
+    if (x.taken === true) taken++;
+    else if (x.taken === false) skipped++;
+    else if (i < OPTIONAL_FROM) missing++;
   }));
   return { taken, skipped, missing };
 }
@@ -1780,59 +1971,92 @@ let dataMsg = null;      // Rueckmeldung im Daten-Tab statt eines Systemdialogs
 let textPanel = null;    // { title, text } fuer den Kopier-Bereich
 let armDelete = false;
 
+let armRestore = null;   // "restore:<key>" oder "del:<key>", zweiter Tipp führt aus
+
 function download(name, text, type){
   try {
     const url = URL.createObjectURL(new Blob([text], { type }));
     const a = h("a", { href:url, download:name }); document.body.append(a); a.click(); a.remove();
     setTimeout(() => URL.revokeObjectURL(url), 2000);
-  } catch(e){ /* im Sandbox-Frame oft blockiert, der Kopier-Bereich faengt das ab */ }
+  } catch(e){ /* blockiert, der Kopier-Bereich fängt das ab */ }
+}
+// iOS: Teilen-Fenster mit "In Dateien sichern". Sonst Download mit Text als Rückfall.
+// navigator.share muss synchron im Klick starten, deshalb kein await davor.
+async function shareOrDownload(name, text, type){
+  try {
+    const file = new File([text], name, { type });
+    if (navigator.canShare && navigator.canShare({ files:[file] })){
+      await navigator.share({ files:[file], title:name });
+      return "shared";
+    }
+  } catch(e){
+    if (e && e.name === "AbortError") return "aborted";
+  }
+  download(name, text, type);
+  return "downloaded";
 }
 function exportPayload(){
   const days = {};
   Object.entries(state.days).forEach(([k,v]) => { if (dayHasData(v)) days[k] = v; });
   return { ...state, days };
 }
-function exportJSON(){
-  state.meta.lastExport = new Date().toISOString(); save();
+async function exportJSON(){
+  const name = "wirkungslog-" + logicalToday() + ".json";
   const txt = JSON.stringify(exportPayload(), null, 1);
-  download("wirkungslog-" + logicalToday() + ".json", txt, "application/json");
-  textPanel = { title:"Sicherung (JSON)", text:txt,
-    hint:"Falls der Download im Vorschaufenster blockiert wird: Text markieren, kopieren und in eine Datei sichern. Genau dieser Text laesst sich unten wieder einlesen." };
+  const r = await shareOrDownload(name, txt, "application/json");
+  if (r === "aborted") return;
+  state.meta.lastExport = new Date().toISOString(); save();
+  if (r === "downloaded") textPanel = { title:"Sicherung (JSON)", text:txt,
+    hint:"Falls der Download blockiert wird: Text markieren, kopieren und in eine Datei sichern. Genau dieser Text lässt sich unten wieder einlesen." };
+  else flashSaved("Sicherung übergeben");
   renderDaten();
 }
-function exportCSV(){
-  const head = ["Datum","Wochentag","Dosis 1 mg","Einnahme 1","Wirkbeginn 1","Wirkende 1","Latenz 1 min","Wirkdauer 1 min",
-    "Dosis 2 mg","Einnahme 2","Wirkbeginn 2","Wirkende 2","Latenz 2 min","Wirkdauer 2 min","Loch min",
-    "Anfangen F1","Dranbleiben F1","Vermieden F1","Reaktionen F1","Nebenwirkungen F1",
-    "Anfangen F2","Dranbleiben F2","Vermieden F2","Reaktionen F2","Nebenwirkungen F2",
-    "Puls vor 1","Puls Fenster 1","Puls vor 2","Puls Fenster 2","Plan 1","Plan 2","Notiz F1","Notiz F2"];
+async function exportCSV(){
+  const head = ["Datum","Wochentag","Tagesart"];
+  IDX.forEach(i => { const n = i+1;
+    head.push("Dosis "+n+" mg","Einnahme "+n,"Wirkbeginn "+n,"Wirkende "+n,"Latenz "+n+" min","Wirkdauer "+n+" min"); });
+  IDX.slice(0, -1).forEach(i => head.push("Loch "+(i+1)+"-"+(i+2)+" min"));
+  IDX.forEach(i => { const n = i+1;
+    head.push("Anfangen F"+n,"Dranbleiben F"+n,"Vermieden F"+n,"Reaktionen F"+n,"Nebenwirkungen F"+n); });
+  IDX.forEach(i => head.push("Plan "+(i+1)));
+  IDX.forEach(i => head.push("Notiz F"+(i+1)));
+
   const q = v => { const s = v == null ? "" : String(v); return /[";\n]/.test(s) ? '"'+s.replace(/"/g,'""')+'"' : s; };
+  const av = v => v == null ? "" : (v ? "ja" : "nein");
   const rows = sortedDays().map(d => {
-    const m = metrics(d), w1 = effWindow(d.doses[0]), w2 = effWindow(d.doses[1]), r1 = d.review.f1, r2 = d.review.f2;
-    const av = v => v == null ? "" : (v ? "ja" : "nein");
-    return [d.date, WD[fromIso(d.date).getDay()],
-      d.doses[0].taken === false ? 0 : d.doses[0].mg, d.doses[0].time, w1.onset, w1.offset, m.lat1, m.len1,
-      d.doses[1].taken === false ? 0 : d.doses[1].mg, d.doses[1].time, w2.onset, w2.offset, m.lat2, m.len2, m.gap,
-      r1.init, r1.endur, av(r1.avoid), r1.impulses, r1.se.join(", "),
-      r2.init, r2.endur, av(r2.avoid), r2.impulses, r2.se.join(", "),
-      pulseOf(d.doses[0]).pre, pulseOf(d.doses[0]).win == null ? "" : Math.round(pulseOf(d.doses[0]).win),
-      pulseOf(d.doses[1]).pre, pulseOf(d.doses[1]).win == null ? "" : Math.round(pulseOf(d.doses[1]).win),
-      d.doses[0].plan, d.doses[1].plan, r1.note, r2.note].map(q).join(";");
+    const m = metrics(d), row = [d.date, WD[fromIso(d.date).getDay()], d.status ? statusLabel(d.status) : ""];
+    IDX.forEach(i => {
+      const dz = d.doses[i], w = effWindow(dz);
+      const mg = dz.taken === false ? 0 : dz.mg;
+      row.push(mg, dz.time, w.onset, w.offset, m.lat[i], m.len[i]);
+    });
+    IDX.slice(0, -1).forEach(i => row.push(m.gaps[i]));
+    IDX.forEach(i => { const r = d.review[winKey(i)];
+      row.push(r.init, r.endur, av(r.avoid), r.impulses, (r.se || []).join(", ")); });
+    IDX.forEach(i => row.push(d.doses[i].plan));
+    IDX.forEach(i => row.push(d.review[winKey(i)].note));
+    return row.map(q).join(";");
   });
   const txt = head.join(";") + "\n" + rows.join("\n");
-  download("wirkungslog-" + logicalToday() + ".csv", "\uFEFF" + txt, "text/csv");
-  textPanel = { title:"Tabelle (CSV, Semikolon)", text:txt,
-    hint:"Kopieren und in Numbers oder Excel einfuegen. Eine Zeile pro Tag." };
+  const r = await shareOrDownload("wirkungslog-" + logicalToday() + ".csv", "﻿" + txt, "text/csv");
+  if (r === "aborted") return;
+  if (r === "downloaded") textPanel = { title:"Tabelle (CSV, Semikolon)", text:txt,
+    hint:"Kopieren und in Numbers oder Excel einfügen. Eine Zeile pro Tag." };
   renderDaten();
 }
+
 function mergeText(raw){
   let inc;
   try { inc = JSON.parse(raw); }
   catch(e){ dataMsg = { bad:true, t:"Das ist keine gültige Sicherung. Erwartet wird der JSON-Text aus dem Export." }; return renderDaten(); }
-  if (!inc || !inc.days || inc.schema !== SCHEMA){
-    dataMsg = { bad:true, t:"Unbekanntes Format oder andere App-Version." }; return renderDaten();
+  if (!inc || !inc.days || typeof inc.schema !== "number"){
+    dataMsg = { bad:true, t:"Unbekanntes Format." }; return renderDaten();
   }
-  migrate(inc);                 // ältere Sicherungen ins aktuelle Eintragsformat heben
+  if (inc.schema > SCHEMA){
+    dataMsg = { bad:true, t:"Diese Sicherung stammt aus einer neueren App-Version." }; return renderDaten();
+  }
+  if (readOnly){ dataMsg = { bad:true, t:"Speicher nicht lesbar, Einlesen gesperrt." }; return renderDaten(); }
+  migrate(inc);                 // ältere Sicherungen ins aktuelle Format heben, auch Version 1
   let added = 0, updated = 0, kept = 0;
   // Tage, die nur lokal existieren, werden nie angefasst.
   // Ein leerer Tag aus der Datei überschreibt nie einen Tag mit Inhalt.
@@ -1855,7 +2079,42 @@ function importJSON(file){
   fr.readAsText(file);
 }
 
+function snapLabel(key, snap){
+  if (key === "pre-v2") return "Vor dem Update";
+  if (key === "undo") return "Vor der letzten Wiederherstellung";
+  const date = key.slice(5);
+  return dateLabel(date);
+}
+function snapDays(snap){
+  try { return Object.values((snap.state || {}).days || {}).filter(dayHasData).length; } catch(e){ return 0; }
+}
+async function listSnaps(){
+  let keys = [];
+  try { keys = await IDB.keys(); } catch(e){ return []; }
+  const out = [];
+  for (const k of keys){
+    if (typeof k !== "string" || !(k.startsWith("snap:") || k === "pre-v2" || k === "undo")) continue;
+    try { const v = await IDB.get(k); if (v && v.state) out.push({ key:k, at:v.at || "", n:snapDays(v), snap:v }); } catch(e){}
+  }
+  return out.sort((a,b) => a.at < b.at ? 1 : -1);
+}
+async function restoreSnap(key){
+  if (readOnly) return;
+  const snap = await IDB.get(key).catch(() => null);
+  if (!snap || !snap.state){ dataMsg = { bad:true, t:"Kopie nicht lesbar." }; armRestore = null; return renderDaten(); }
+  try { await IDB.set("undo", { at:new Date().toISOString(), state:clone(state) }); } catch(e){}
+  const st = clone(snap.state);
+  migrate(st);
+  state = st;
+  try { await IDB.set("state", state); } catch(e){ dataMsg = { bad:true, t:"Wiederherstellen fehlgeschlagen." }; }
+  armRestore = null; currentDate = logicalToday(); resetDayState();
+  if (!dataMsg) dataMsg = { bad:false, t:"Wiederhergestellt: " + snapLabel(key, snap) };
+  renderAll();
+}
+
+let daTok = 0;
 async function renderDaten(){
+  const tok = ++daTok;
   const root = document.getElementById("view-daten");
   root.textContent = "";
   const days = sortedDays();
@@ -1867,7 +2126,7 @@ async function renderDaten(){
   if (last === null || last >= 7) c1.append(h("div", { class:"note-box" },
     last === null ? "Noch nie gesichert. Browserdaten können verloren gehen, exportiere einmal pro Woche."
                   : "Letzte Sicherung vor " + last + " Tagen. Zeit für eine neue."));
-  else c1.append(h("p", { class:"hint" }, "Letzte Sicherung vor " + last + " Tagen."));
+  else c1.append(h("p", { class:"hint" }, last === 0 ? "Letzte Sicherung heute" : "Letzte Sicherung vor " + last + (last === 1 ? " Tag" : " Tagen")));
   c1.append(h("div", { class:"field" }, h("button", { class:"ghost", onclick:exportJSON }, "Sicherung exportieren (JSON)")));
   c1.append(h("div", { class:"field" }, h("button", { class:"ghost", onclick:exportCSV }, "Tabelle für den Arzt (CSV)")));
   c1.append(h("div", { class:"field" }, h("button", { class:"ghost", onclick:openReport }, "Arztbericht anzeigen")));
@@ -1906,10 +2165,33 @@ async function renderDaten(){
       }}, "Aus Text einlesen"))),
     h("p", { class:"hint" }, "Das Handy ist das führende Gerät. Erfasse dort, lies woanders ein, wenn du auswerten willst.")));
 
+  const snaps = await listSnaps();
+  if (tok !== daTok) return;
+  if (snaps.length){
+    const sc = h("div", { class:"card" }, h("h2", {}, "Automatische Kopien"));
+    sc.append(h("div", { class:"snaps" }, snaps.map(sn => {
+      const ra = armRestore === "restore:" + sn.key, da = armRestore === "del:" + sn.key;
+      return h("div", { class:"snaprow" },
+        h("div", { class:"sn-l" }, h("span", { class:"sn-n" }, snapLabel(sn.key, sn.snap)),
+          h("span", { class:"sn-d" }, sn.n + (sn.n === 1 ? " Tag" : " Tage"))),
+        sn.key === "pre-v2" ? h("button", { class:"sn-b armable" + (da ? " armed" : ""), type:"button",
+          onclick: async () => {
+            if (!da){ armRestore = "del:" + sn.key; return renderDaten(); }
+            try { await IDB.del(sn.key); } catch(e){}
+            armRestore = null; renderDaten();
+          }}, da ? "Sicher?" : "Löschen") : null,
+        h("button", { class:"sn-b armable" + (ra ? " armed" : ""), type:"button",
+          onclick: () => { if (!ra){ armRestore = "restore:" + sn.key; return renderDaten(); } restoreSnap(sn.key); }},
+          ra ? "Sicher?" : "Wiederherstellen"));
+    })));
+    root.append(sc);
+  }
+
   const c3 = h("div", { class:"card" });
   c3.append(h("h2", {}, "Speicher"));
   let persisted = false;
   try { persisted = navigator.storage && navigator.storage.persisted ? await navigator.storage.persisted() : false; } catch(e){}
+  if (tok !== daTok) return;
   c3.append(h("p", { class:"sub" }, persisted
     ? "Dauerhafter Speicher ist aktiv."
     : "Dauerhafter Speicher nicht bestätigt. Leg die App auf den Home-Bildschirm und exportiere regelmäßig."));
@@ -1922,14 +2204,14 @@ async function renderDaten(){
   const dz = h("div", { class:"card danger-zone" });
   dz.append(h("h2", {}, "Gefahrenzone"));
   dz.append(h("p", { class:"sub" },
-    days.length + (days.length === 1 ? " Tag" : " Tage") + " werden unwiderruflich gelöscht. "
-    + "Es gibt keine Wiederherstellung und keine zweite Kopie."));
+    days.length + (days.length === 1 ? " Tag" : " Tage") + " und alle automatischen Kopien werden unwiderruflich gelöscht."));
   dz.append(h("div", { class:"field" }, h("button", { class:"ghost danger", type:"button", onclick:async () => {
     if (!armDelete){ armDelete = true; return renderDaten(); }
+    if (readOnly) return;
     state = blankState(); armDelete = false;
-    try { await IDB.set(null, state); } catch(e){}
+    try { for (const k of await IDB.keys()) await IDB.del(k); await IDB.set("state", state); } catch(e){}
     dataMsg = { bad:false, t:"Alle Einträge gelöscht." };
-    currentDate = logicalToday(); openBlock = null; openWin = null; hoursOpen = [false,false];
+    currentDate = logicalToday(); resetDayState();
     renderAll();
   }}, armDelete ? "Wirklich löschen? Nochmal tippen" : "Alle Daten löschen")));
   if (armDelete) dz.append(h("p", { class:"hint" },
@@ -1938,10 +2220,8 @@ async function renderDaten(){
 
   root.append(h("div", { class:"card" },
     h("h2", {}, "Über"),
-    h("p", { class:"sub" }, "Version 1, Testfassung im Artefakt. Kein Server, keine Übertragung."),
-    h("p", { class:"hint" },
-      "Der Tag beginnt um 04:00 Uhr, ein Eintrag um 00:20 zählt zum Vortag. Das Log zeigt, wie das Medikament über den Tag wirkt. "
-      + "Ob es wirkt, kann es ohne Vergleichszeitraum ohne Medikament nicht beweisen. Nimm das mit, wenn du es einem Arzt zeigst.")));
+    h("p", { class:"sub" }, "Version 2 · Kein Server, keine Übertragung"),
+    h("p", { class:"hint" }, "Der Tag beginnt um 04:00 Uhr, ein Eintrag um 00:20 zählt zum Vortag.")));
 }
 
 
@@ -1954,33 +2234,37 @@ function openReport(){
   const box = h("div", { class:"report", id:"report" });
   const inner = h("div", { class:"inner" });
   const R = () => { closeReport(); openReport(); };
-
   const T = (head, rows) => {
     const t = h("table");
     t.append(h("thead", {}, h("tr", {}, head.map(x => h("th", {}, x)))));
     t.append(h("tbody", {}, rows.map(r => h("tr", {}, r.map(c => h("td", {}, c == null ? "–" : String(c)))))));
     return t;
   };
-  const c = collect(days), a = adherence(days), q = quality(days);
+  const c = collect(days), a = adherence(days), q = quality(days), wins = usedWins(days);
   const first = days[0], last = days[days.length-1];
-  const dl = days.map(doseLabel).filter(Boolean);
-  const doseSeq = [...new Set(dl)].join(" → ") || "–";
+  const lv = days.map(doseLevel).filter(v => v != null);
+  const doseSeq = lv.filter((v,i) => i === 0 || v !== lv[i-1]).map(v => v + " mg").join(" → ") || "–";
+  const third = days.filter(d => d.doses[OPTIONAL_FROM] && d.doses[OPTIONAL_FROM].taken === true);
+  const wl = winList(days), onW = wl.filter(x => x.on), offW = wl.filter(x => !x.on);
+  const head = wins.map(i => "Fenster " + (i+1));
 
   inner.append(h("h1", {}, "Wirkungslog Medikinet adult"));
   inner.append(h("dl", { class:"kv" },
-    h("dt", {}, "Zeitraum"),   h("dd", {}, first ? first.date + " bis " + last.date : "–"),
+    h("dt", {}, "Zeitraum"),      h("dd", {}, first ? first.date + " bis " + last.date : "–"),
     h("dt", {}, "Erfasste Tage"), h("dd", {}, String(days.length)),
-    h("dt", {}, "Dosisverlauf"), h("dd", {}, doseSeq),
-    h("dt", {}, "Einnahmen"),  h("dd", {}, a.taken + " genommen · " + a.skipped + " ausgelassen · " + a.missing + " nicht erfasst"),
+    h("dt", {}, "Einzeldosis"),   h("dd", {}, doseSeq),
+    h("dt", {}, "Dritte Einnahme"), h("dd", {}, third.length ? third.length + " Tage · ab " + third[0].date : "–"),
+    h("dt", {}, "Einnahmen"),     h("dd", {}, a.taken + " genommen · " + a.skipped + " ausgelassen · " + a.missing + " nicht erfasst"),
     h("dt", {}, "Vollständigkeit"), h("dd", {}, q.full + " von " + days.length + " Tagen · " +
       (q.rows ? Math.round(q.late/q.rows*100) : 0) + " % Einträge nachgetragen"),
-    h("dt", {}, "Methode"),    h("dd", {}, "Selbstbeurteilung · kein Vergleichszeitraum ohne Medikament · keine Verblindung · Blutdruck nicht erhoben")));
+    h("dt", {}, "Methode"),       h("dd", {}, "Selbstbeurteilung · keine Verblindung · Blutdruck und Puls nicht erhoben · "
+      + (offW.length ? offW.length + " Vergleichsfenster ohne Medikament" : "kein Vergleichszeitraum ohne Medikament"))));
 
   inner.append(h("h3", {}, "Kennzahlen"));
-  inner.append(T(["","Fenster 1","Fenster 2"], [
-    ["Latenz",    fmtMin(c.lat1), fmtMin(c.lat2)],
-    ["Wirkdauer", fmtMin(c.len1), fmtMin(c.len2)],
-    ["Loch zwischen den Fenstern", fmtMin(c.gap), ""]
+  inner.append(T(["", ...head], [
+    ["Latenz",    ...wins.map(i => fmtMin(c.lat[i]))],
+    ["Wirkdauer", ...wins.map(i => fmtMin(c.len[i]))],
+    ...wins.slice(0, -1).map(i => ["Loch " + (i+1) + " → " + (i+2), ...wins.map(j => j === i ? fmtMin(c.gaps[i]) : "")])
   ]));
 
   inner.append(h("h3", {}, "Wirkfenster im Verlauf"));
@@ -1989,12 +2273,12 @@ function openReport(){
     const row = h("div", { class:"rtl-row" });
     row.append(h("span", { class:"rtl-day" }, d.date.slice(8) + "." + d.date.slice(5,7) + "."));
     const lane = h("div", { class:"rtl-lane" });
-    [0,1].forEach(i => {
+    IDX.forEach(i => {
       const w = effWindow(d.doses[i]);
       if (w.onset && w.offset){
         const b = h("div", { class:"rtl-bar w" + (i+1) });
-        b.style.left = axPct(toMin(w.onset)) + "%";
-        b.style.width = Math.max(1.5, axPct(toMin(w.offset)) - axPct(toMin(w.onset))) + "%";
+        b.style.left = axPct(dm(w.onset)) + "%";
+        b.style.width = Math.max(1.5, axPct(dm(w.offset)) - axPct(dm(w.onset))) + "%";
         lane.append(b);
       }
     });
@@ -2002,7 +2286,7 @@ function openReport(){
     tl.append(row);
   });
   const ax = h("div", { class:"ax" });
-  for (let hh = 6; hh <= 22; hh += 2){ const t = h("span", {}, String(hh)); t.style.left = axPct(hh*60) + "%"; ax.append(t); }
+  for (let hh = 6; hh <= 24; hh += 2){ const t = h("span", {}, String(hh)); t.style.left = axPct(hh*60) + "%"; ax.append(t); }
   tl.append(h("div", { class:"rtl-row" }, h("span", { class:"rtl-day" }), ax));
   inner.append(tl);
 
@@ -2012,22 +2296,19 @@ function openReport(){
   if (gk.length){
     inner.append(h("h3", {}, "Nach Dosisstufe"));
     inner.append(T(["Dosis","Tage","Latenz","Wirkdauer","Loch","Start","Durchhalten","Impulse","Vermeidung"],
-      gk.map(k => { const g = collect(groups[k]); return [k, groups[k].length,
-        fmtMin(avg([g.lat1,g.lat2])), fmtMin(avg([g.len1,g.len2])), fmtMin(g.gap),
-        fmt1(avg([g.init1,g.init2])), fmt1(avg([g.end1,g.end2])), fmt1(avg([g.imp1,g.imp2])),
-        g.avoid == null ? "–" : Math.round(g.avoid*100) + " %"]; })));
+      gk.map(k => { const g = collect(groups[k]), b = behav(winList(groups[k])); return [k, groups[k].length,
+        fmtMin(g.latAll), fmtMin(g.lenAll), fmtMin(g.gap),
+        fmt1(b.init), fmt1(b.endur), fmt1(b.imp), fmtPct(b.avoid)]; })));
   }
 
   inner.append(h("h3", {}, "Verhalten (0 = schlechtester, 3 = bester Wert; Impulse = Anzahl)"));
-  inner.append(T(["","Fenster 1","Fenster 2"], [
-    ["Aufgabenstart (0 nicht angefangen … 3 ohne Reibung)", fmt1(c.init1), fmt1(c.init2)],
-    ["Durchhalten (0 sofort abgedriftet … 3 durchgehend)",  fmt1(c.end1),  fmt1(c.end2)],
-    ["Bereute Reaktionen, Anzahl",                          fmt1(c.imp1),  fmt1(c.imp2)],
-    ["Vermeidungsquote",                                    c.avoid == null ? "–" : Math.round(c.avoid*100) + " %", ""]
+  inner.append(T(["", ...head], [
+    ["Aufgabenstart (0 nicht angefangen … 3 ohne Reibung)", ...wins.map(i => fmt1(c.init[i]))],
+    ["Durchhalten (0 sofort abgedriftet … 3 durchgehend)",  ...wins.map(i => fmt1(c.end[i]))],
+    ["Bereute Reaktionen, Anzahl",                          ...wins.map(i => fmt1(c.imp[i]))],
+    ["Vermeidungsquote",                                    ...wins.map(i => fmtPct(c.avoid[i]))]
   ]));
 
-  const wl = winList(days);
-  const onW = wl.filter(x => x.on), offW = wl.filter(x => !x.on);
   if (offW.length){
     const A = behav(onW), B = behav(offW);
     inner.append(h("h3", {}, "Mit und ohne Medikament"));
@@ -2035,10 +2316,7 @@ function openReport(){
       ["Aufgabenstart 0–3",  fmt1(A.init),  fmt1(B.init)],
       ["Durchhalten 0–3",    fmt1(A.endur), fmt1(B.endur)],
       ["Bereute Reaktionen", fmt1(A.imp),   fmt1(B.imp)],
-      ["Vermeidungsquote",   A.avoid == null ? "–" : Math.round(A.avoid*100) + " %",
-                             B.avoid == null ? "–" : Math.round(B.avoid*100) + " %"],
-      ["Puls, bpm",          A.pulse == null ? "–" : Math.round(A.pulse),
-                             B.pulse == null ? "–" : Math.round(B.pulse)]
+      ["Vermeidungsquote",   fmtPct(A.avoid), fmtPct(B.avoid)]
     ]));
   }
 
@@ -2048,35 +2326,24 @@ function openReport(){
     inner.append(T(["","Letzte 7 Tage","Davor"], se.keys.map(k => [k, se.recent[k]||0, se.older[k]||0])));
   }
 
-  const pre = avg(days.flatMap(d => [0,1].map(i => pulseOf(d.doses[i]).pre)));
-  const win = avg(days.flatMap(d => [0,1].map(i => pulseOf(d.doses[i]).win)));
-  const dlt = avg(days.flatMap(d => [0,1].map(i => pulseOf(d.doses[i]).delta)));
-  if (pre != null || win != null){
-    inner.append(h("h3", {}, "Puls in Ruhe, bpm · Fenster = 1 bis 3 h nach der Einnahme"));
-    inner.append(T(["Vor der Einnahme","1–3 h danach","Differenz"],
-      [[pre == null ? "–" : Math.round(pre), win == null ? "–" : Math.round(win),
-        dlt == null ? "–" : (dlt > 0 ? "+" : "") + Math.round(dlt)]]));
-  }
-
   inner.append(h("h3", {}, "Tagestabelle" + (reportAll ? "" : ", letzte 14 Tage")));
-  inner.append(T(["Datum","Art","Dosis","Ein. 1","Fenster 1","Ein. 2","Fenster 2","Loch","Start 1/2","Durch. 1/2","Impulse 1/2","Nebenwirkungen"],
+  const join = arr => arr.map(v => v == null || v === "" ? "–" : v).join(" · ");
+  inner.append(T(["Datum","Art","Dosis","Einnahmen","Wirkfenster","Start","Durchh.","Impulse","Nebenwirkungen"],
     (reportAll ? days : days.slice(-14)).map(d => {
-      const m = metrics(d), w1 = effWindow(d.doses[0]), w2 = effWindow(d.doses[1]);
-      const pair = (x,y) => (x == null ? "–" : x) + " / " + (y == null ? "–" : y);
-      const se2 = [...new Set([...d.review.f1.se, ...d.review.f2.se])].join(", ");
+      const ws = IDX.filter(i => winUsed(d, i));
+      const se2 = [...new Set(ws.flatMap(i => d.review[winKey(i)].se || []))].join(", ");
       return [d.date.slice(5), d.status ? statusLabel(d.status).slice(0,4) : "–", doseLabel(d) || "–",
-        d.doses[0].time || "–", w1.onset ? w1.onset + "–" + w1.offset : "–",
-        d.doses[1].time || "–", w2.onset ? w2.onset + "–" + w2.offset : "–",
-        m.gap == null ? "–" : m.gap + "\u2009min",
-        pair(rv(d,0,"f1","init"), rv(d,1,"f2","init")),
-        pair(rv(d,0,"f1","endur"), rv(d,1,"f2","endur")),
-        pair(rv(d,0,"f1","impulses"), rv(d,1,"f2","impulses")),
+        join(ws.map(i => d.doses[i].taken === false ? "aus" : d.doses[i].time)),
+        join(ws.map(i => { const w = effWindow(d.doses[i]); return w.onset ? w.onset + "–" + (w.offset || "?") : null; })),
+        join(ws.map(i => rv(d, i, "init"))),
+        join(ws.map(i => rv(d, i, "endur"))),
+        join(ws.map(i => rv(d, i, "impulses"))),
         se2 || "–"];
     })));
 
   inner.append(h("div", { class:"foot" },
     "Erstellt " + new Date().toLocaleDateString("de-DE") + " · Wirkungslog · Latenz = Einnahme bis Wirkbeginn · "
-    + "Loch = Wirkende Fenster 1 bis Wirkbeginn Fenster 2"));
+    + "Loch = Wirkende eines Fensters bis Wirkbeginn des nächsten · ? = Wirkende nicht erfasst"));
 
   box.append(inner, h("div", { class:"rbar" },
     h("button", { class:"sec", type:"button", onclick:closeReport }, "Schließen"),
@@ -2110,22 +2377,41 @@ document.querySelectorAll("nav.tabs button").forEach(b => b.addEventListener("cl
 
 document.addEventListener("click", e => {
   if (armDelete && !e.target.classList.contains("danger")){ armDelete = false; if (currentTab === "daten") renderDaten(); }
+  if (armRestore && !e.target.classList.contains("armable")){ armRestore = null; if (currentTab === "daten") renderDaten(); }
 }, true);
 
 
 /* ===================== Schnellerfassung ===================== */
-function nowMin(){ const d = new Date(); return d.getHours()*60 + d.getMinutes(); }
-// Welches Fenster ist gerade dran? Laufendes zuerst, sonst das nächste unerfasste.
+// Welches Fenster ist gerade dran? Laufendes zuerst (das jüngste), sonst die nächste fällige Einnahme.
 function activeDoseIdx(day){
-  const n = nowMin();
-  for (let i = 1; i >= 0; i--){
-    const d = day.doses[i];
-    if (d.taken === true && d.time && n >= toMin(d.time) && n <= toMin(d.time) + HOURS*60) return i;
-  }
-  if (!day.doses[0].time && day.doses[0].taken !== false) return 0;
-  if (!day.doses[1].time && day.doses[1].taken !== false) return 1;
-  for (let i = 1; i >= 0; i--) if (day.doses[i].time) return i;
+  for (let i = N_DOSES - 1; i >= 0; i--) if (windowLiveNow(day.doses[i])) return i;
+  for (let i = 0; i < OPTIONAL_FROM; i++){ const d = day.doses[i]; if (!d.time && d.taken !== false) return i; }
+  for (let i = N_DOSES - 1; i >= 0; i--) if (day.doses[i].time) return i;
   return 0;
+}
+// Für Ereignisse von außen: Beginn gehört zum jüngsten laufenden Fenster ohne Beginn,
+// Ende zum ältesten Fenster mit Beginn, aber ohne Ende.
+function eventTarget(day, key){
+  const n = nowDm();
+  if (key === "onset"){
+    for (let i = N_DOSES - 1; i >= 0; i--){ const d = day.doses[i]; if (windowLiveNow(d) && !d.onset) return i; }
+  } else {
+    for (let i = 0; i < N_DOSES; i++){
+      const d = day.doses[i];
+      if (d.taken === true && d.time && !d.offset && effWindow(d).onset
+          && n >= dm(d.time) && n <= dm(d.time) + HOURS*60 + 120) return i;
+    }
+  }
+  return activeDoseIdx(day);
+}
+function goTracking(date, idx){
+  if (currentTab !== "tracking"){
+    currentTab = "tracking";
+    document.querySelectorAll("nav.tabs button").forEach(x => x.setAttribute("aria-selected", String(x.dataset.tab === "tracking")));
+    moveTabThumb();
+  }
+  currentDate = date; openBlock = idx; openWin = null;
+  renderAll();
 }
 
 let sheetEls = null;
@@ -2151,31 +2437,53 @@ function openQuick(){
   let time = nowHM();
   let rating = null;
   let note = "";
-  let pulse = null;
 
   const back = h("div", { class:"backdrop", onclick:closeQuick });
   const sheet = h("div", { class:"sheet", role:"dialog", "aria-modal":"true", "aria-label":"Schnell erfassen" });
   const bodyBox = h("div", { class:"sheet-body" });
   const footBox = h("div", { class:"sheet-foot" });
 
+  // Eintrag aus Bewertung und Notiz, falls etwas eingegeben wurde
+  const pushEntry = dose => {
+    if (rating == null && !note.trim()) return false;
+    dose.checks.push({ id:newId(), t:time, r:rating, note:note.trim(), at:new Date().toISOString() });
+    return true;
+  };
+  const commitEvent = (key, label) => {
+    const dose = day.doses[target];
+    if (dose[key] || !dose.time) return;
+    const clamped = setWindowTime(dose, key, time);
+    const withEntry = pushEntry(dose);
+    save(date);
+    closeQuick();
+    goTracking(date, target);
+    flashSaved(clamped ? (key === "onset" ? "Wirkbeginn auf Einnahmezeit gesetzt" : "Wirkende auf Wirkbeginn gesetzt")
+                       : label + " · " + dose[key] + (withEntry ? " · Eintrag gesichert" : ""));
+  };
+
   const draw = () => {
     const dose = day.doses[target];
     bodyBox.textContent = "";
 
     bodyBox.append(h("div", { class:"field" },
-      segmented([{v:0,t:"Einnahme 1"},{v:1,t:"Einnahme 2"}], target, v => {
+      segmented(IDX.map(i => ({ v:i, t:"Einnahme " + (i+1) })), target, v => {
         if (v == null) return; target = v; draw();
       }, "compact", "q-target")));
 
-    bodyBox.append(h("div", { class:"field" }, h("div", { class:"row" },
-      h("div", { class:"grow" },
-        h("span", { class:"lbl" }, "Uhrzeit"),
-        h("input", { type:"time", value:time,
-          onchange:e => { if (e.target.value){ time = e.target.value; refresh(); } }})),
-      h("div", { class:"grow" },
-        h("span", { class:"lbl" }, "Puls"),
-        h("input", { type:"number", inputmode:"numeric", min:"30", max:"220", placeholder:"–",
-          value: pulse ?? "", oninput:e => { pulse = e.target.value === "" ? null : Number(e.target.value); refresh(); }})))));
+    const canEv = dose.taken === true && !!dose.time;
+    const ev = (key, label) => {
+      const v = dose[key];
+      return h("button", { class:"evbtn" + (v ? " set" : ""), type:"button", disabled: (!canEv || !!v) || null,
+        onclick:() => commitEvent(key, label) },
+        h("span", { class:"ev-n" }, label),
+        h("span", { class:"ev-t" }, v ? "erfasst " + v : canEv ? time : "–"));
+    };
+    bodyBox.append(h("div", { class:"field evrow" }, ev("onset", "Wirkung spürbar"), ev("offset", "Lässt nach")));
+
+    bodyBox.append(h("div", { class:"field" },
+      h("span", { class:"lbl" }, "Uhrzeit"),
+      h("input", { type:"time", value:time,
+        onchange:e => { if (e.target.value){ time = e.target.value; draw(); } }})));
 
     bodyBox.append(h("div", { class:"field" },
       h("span", { class:"lbl" }, "Wirkung (optional)"),
@@ -2188,32 +2496,24 @@ function openQuick(){
         placeholder:"Woran merkst du es? Nebenwirkungen? Was gerade passiert?",
         oninput:e => { note = e.target.value; refresh(); }}, note)));
 
-    if (!dose.time) bodyBox.append(h("p", { class:"lockhint" },
-      "Für dieses Fenster ist noch keine Einnahme erfasst. Der Eintrag wird trotzdem gesichert."));
-
+    if (!dose.time) bodyBox.append(h("p", { class:"lockhint" }, "Für diese Einnahme ist noch keine Uhrzeit erfasst"));
     refresh();
   };
 
   const saveBtn = h("button", { class:"primary", type:"button", onclick:() => commit() }, "Sichern");
   const refresh = () => {
     const hasNote = note.trim().length > 0;
-    saveBtn.disabled = rating == null && !hasNote && pulse == null;
-    saveBtn.textContent = rating != null ? "Wirkung sichern" : hasNote ? "Notiz sichern" : pulse != null ? "Puls sichern" : "Sichern";
+    saveBtn.disabled = rating == null && !hasNote;
+    saveBtn.textContent = rating != null ? "Wirkung sichern" : hasNote ? "Notiz sichern" : "Sichern";
   };
 
   const commit = () => {
     const dose = day.doses[target];
-    if (rating == null && !note.trim() && pulse == null) return;
-    dose.checks.push({ id:newId(), t:time, r:rating, note:note.trim(), pulse, at:new Date().toISOString() });
+    if (!pushEntry(dose)) return;
     save(date);
     closeQuick();
-    if (currentTab !== "tracking"){
-      currentTab = "tracking";
-      document.querySelectorAll("nav.tabs button").forEach(x => x.setAttribute("aria-selected", String(x.dataset.tab === "tracking")));
-      moveTabThumb();
-    }
-    currentDate = date; openBlock = target; openWin = null; hoursOpen[target] = true;
-    renderAll();
+    hoursOpen[target] = true;
+    goTracking(date, target);
     flashSaved(rating != null ? "Wirkung erfasst" : "Notiz erfasst");
   };
 
@@ -2229,26 +2529,39 @@ function openQuick(){
   document.addEventListener("keydown", onSheetKey);
   document.getElementById("fab").classList.add("open");
   requestAnimationFrame(() => { back.classList.add("on"); sheet.classList.add("on"); });
-
 }
 document.getElementById("fab").addEventListener("click", toggleQuick);
 
-// Aufruf über die Adresse: ?log=0..3 legt sofort einen Eintrag an, ?quick=1 öffnet das Fenster
+// Aufruf über die Adresse, etwa aus einem Kurzbefehl:
+//   ?log=0..3        Eintrag mit dieser Bewertung und der aktuellen Uhrzeit
+//   ?event=on|off    Wirkbeginn oder Wirkende jetzt festhalten
+//   ?quick=1         Schnellerfassung öffnen
 function handleUrlAction(){
   const p = new URLSearchParams(location.search);
   const clean = () => history.replaceState(null, "", location.pathname);
+  if (readOnly){ if ([...p.keys()].length) clean(); return; }
+  const date = logicalToday();
+  const dayOf = () => { if (!state.days[date]) state.days[date] = blankDay(date); return state.days[date]; };
+
   const raw = p.get("log");
   if (raw != null && /^[0-3]$/.test(raw)){
-    const r = Number(raw);
-    const date = logicalToday();
-    if (!state.days[date]) state.days[date] = blankDay(date);
-    const day = state.days[date];
-    const idx = activeDoseIdx(day);
-    day.doses[idx].checks.push({ id:newId(), t:nowHM(), r, note:"", pulse:null, at:new Date().toISOString() });
+    const r = Number(raw), day = dayOf(), idx = activeDoseIdx(day);
+    day.doses[idx].checks.push({ id:newId(), t:nowHM(), r, note:"", at:new Date().toISOString() });
     save(date);
-    currentDate = date; openBlock = idx; openWin = null; hoursOpen[idx] = true;
-    renderAll();
+    hoursOpen[idx] = true;
+    goTracking(date, idx);
     flashSaved(R_LABELS[r] + " · " + nowHM());
+    clean();
+    return;
+  }
+  const evp = p.get("event");
+  if (evp === "on" || evp === "off"){
+    const key = evp === "on" ? "onset" : "offset", label = evp === "on" ? "Wirkbeginn" : "Wirkende";
+    const day = dayOf(), idx = eventTarget(day, key), dose = day.doses[idx];
+    if (!dose.time) flashSaved("Einnahme " + (idx+1) + " hat noch keine Uhrzeit");
+    else if (dose[key]) flashSaved(label + " schon erfasst · " + dose[key]);
+    else { setWindowTime(dose, key, nowHM()); save(date); flashSaved(label + " · Einnahme " + (idx+1) + " · " + dose[key]); }
+    goTracking(date, idx);
     clean();
     return;
   }
@@ -2256,14 +2569,18 @@ function handleUrlAction(){
 }
 
 (async function init(){
-  await load();
+  const st = await load();
   currentDate = logicalToday();
   moveTabThumb();
   renderAll();
+  if (st === "unreadable") flashSaved("Speicher nicht lesbar. Nichts wird überschrieben.");
+  if (st === "newer") flashSaved("Daten aus neuerer App-Version. Nur lesen.");
   handleUrlAction();
+  snapshotDaily();
   try { if (navigator.storage && navigator.storage.persist) navigator.storage.persist(); } catch(e){}
   if ("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(()=>{});
 })();
+
 </script>
 </body>
 </html>
